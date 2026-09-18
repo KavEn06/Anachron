@@ -113,7 +113,6 @@
 		)
 		(capping no)
 		(filling no)
-		(zone_defaults)
 		(pcbplotparams
 			(layerselection 0x00000000_00000000_55555555_5755f5ff)
 			(plot_on_all_layers_selection 0x00000000_00000000_00000000_00000000)
@@ -204,9 +203,9 @@
 			)
 		)
 		(property ki_fp_filters "SOT23-6L_STM SOT23-6L_STM-M SOT23-6L_STM-L")
-		(path "/66768036-aae0-4f58-b81c-1266b19af3ff")
-		(sheetname "/")
-		(sheetfile "Anachron.kicad_sch")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/193974a0-ce4a-4b8d-a756-181c617844cd")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -697,7 +696,7 @@
 			(at -1.36525 -0.950001 90)
 			(size 0.9779 0.5588)
 			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "/USB_D_P")
+			(net "/Power/USB_D_P")
 			(pinfunction "1_1")
 			(pintype "unspecified")
 			(uuid "3d3768ae-6dcd-4979-af31-f9d4a7cf92f3")
@@ -715,7 +714,7 @@
 			(at -1.36525 0.950001 90)
 			(size 0.9779 0.5588)
 			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "/USB_D_N")
+			(net "/Power/USB_D_N")
 			(pinfunction "3_3")
 			(pintype "unspecified")
 			(uuid "a9e35cbc-4a91-41ff-a92e-4b39ce245201")
@@ -724,7 +723,7 @@
 			(at 1.36525 0.950001 90)
 			(size 0.9779 0.5588)
 			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "/MCU_D_N")
+			(net "/Power/MCU_D_N")
 			(pinfunction "4_4")
 			(pintype "unspecified")
 			(uuid "ffd52327-6ca3-4597-899d-9255cc3f7550")
@@ -742,7 +741,7 @@
 			(at 1.36525 -0.950001 90)
 			(size 0.9779 0.5588)
 			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "/MCU_D_P")
+			(net "/Power/MCU_D_P")
 			(pinfunction "6_6")
 			(pintype "unspecified")
 			(uuid "d021906b-f6d3-4e32-abca-4c482ebb8562")
@@ -824,9 +823,9 @@
 			)
 		)
 		(property ki_fp_filters "R_*")
-		(path "/44685eba-098f-498d-9944-fed25a5a7498")
-		(sheetname "/")
-		(sheetfile "Anachron.kicad_sch")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/3aa73365-91d5-4e7d-8990-cc80cc05db72")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -919,6 +918,115 @@
 			)
 		)
 	)
+	(footprint "TestPoint:TestPoint_Pad_D1.5mm"
+		(layer "F.Cu")
+		(uuid "3e3579f9-a0f2-4aaf-89f5-0b24eb1799a9")
+		(at 203.6 134.35)
+		(descr "SMD pad as test Point, diameter 1.5mm")
+		(tags "test point SMD pad")
+		(property "Reference" "TP1"
+			(at 0 -1.648 0)
+			(layer "F.SilkS")
+			(uuid "ec879541-f60b-4d99-85d9-1321df9b865c")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "VBUS"
+			(at 0 1.75 0)
+			(layer "F.Fab")
+			(uuid "f47f50fc-dda5-426b-af59-5a76588c29a7")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "b96f6704-2d7e-4d90-a951-e9136d4024dc")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" "test point"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "7aa920a6-1025-45ec-9a1d-523e8f7d28cb")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property ki_fp_filters "Pin* Test*")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/d8f95a2d-622c-4ecc-9c31-293088c49e91")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
+		(units
+			(unit
+				(name "A")
+				(pins "1")
+			)
+		)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_circle
+			(center 0 0)
+			(end 0 0.95)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.SilkS")
+			(uuid "00259e4d-8c29-422d-ad66-4e5b40e92ef2")
+		)
+		(fp_circle
+			(center 0 0)
+			(end 1.25 0)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "7caa554a-1107-4fc1-8206-f5efd682711b")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 -1.65 0)
+			(layer "F.Fab")
+			(uuid "a0c8bc2a-404a-40b5-9d42-71fb656bb734")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(pad "1" smd circle
+			(at 0 0)
+			(size 1.5 1.5)
+			(layers "F.Cu" "F.Mask")
+			(net "VBUS")
+			(pinfunction "1_1")
+			(pintype "passive")
+			(uuid "300b7e90-758a-4ce6-9d5c-36564d52304b")
+		)
+		(embedded_fonts no)
+	)
 	(footprint "Package_TO_SOT_SMD:SOT-23"
 		(layer "F.Cu")
 		(uuid "419c3bbd-75ad-4437-8d82-5cbfe576cd77")
@@ -984,9 +1092,9 @@
 			)
 		)
 		(property ki_fp_filters "SOT?23*")
-		(path "/fb4a96cd-50f6-415d-bd03-2ef0c38a9074")
-		(sheetname "/")
-		(sheetfile "Anachron.kicad_sch")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/e440c697-7aea-4e3b-b968-f291b65fc647")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -1368,9 +1476,9 @@
 			)
 		)
 		(property ki_fp_filters "R_*")
-		(path "/6ff1eaae-0ce0-4eee-95a5-42abbfb0dd32")
-		(sheetname "/")
-		(sheetfile "Anachron.kicad_sch")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/037a3fe9-8269-485d-9816-f9245d3ec978")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -1516,9 +1624,15 @@
 			)
 		)
 		(property ki_fp_filters "SOT_RG1_DIO SOT_RG1_DIO-M SOT_RG1_DIO-L")
-		(path "/484342b6-b181-4d23-9d51-c6a183105777")
-		(sheetname "/")
-		(sheetfile "Anachron.kicad_sch")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/1920bbc7-34ce-47bb-9104-428f910af1da")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
+		(units
+			(unit
+				(name "A")
+				(pins "1" "2" "5" "4" "3")
+			)
+		)
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
@@ -2002,7 +2116,7 @@
 			(at -1.35255 0.950001)
 			(size 1.0033 0.508)
 			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "/EN Mode")
+			(net "/Power/EN Mode")
 			(pinfunction "EN_3")
 			(pintype "unspecified")
 			(uuid "413b7ecf-aa16-45a9-907c-802f525bac7e")
@@ -2091,9 +2205,9 @@
 			)
 		)
 		(property ki_fp_filters "C_*")
-		(path "/3afba7dd-391b-4b8b-9aaa-da8cd0249332")
-		(sheetname "/")
-		(sheetfile "Anachron.kicad_sch")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/9684ad4f-57cf-4a99-98e0-c2d25078032c")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -2289,9 +2403,9 @@
 				)
 			)
 		)
-		(path "/3eceac29-3417-45d8-b60a-0f409c96a76a")
-		(sheetname "/")
-		(sheetfile "Anachron.kicad_sch")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/80a9715a-b0e5-42ba-a7ee-6a54f3490aef")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -2689,9 +2803,9 @@
 			)
 		)
 		(property ki_fp_filters "TO-???* *_Diode_* *SingleDiode* D_*")
-		(path "/be0b4c26-4107-49eb-81e1-2fad6c842774")
-		(sheetname "/")
-		(sheetfile "Anachron.kicad_sch")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/6063f841-86d6-467f-8ee4-495874acfeba")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -3231,9 +3345,17 @@
 				)
 			)
 		)
-		(path "/413e5289-ae58-455e-8c49-342a508fa543")
-		(sheetname "/")
-		(sheetfile "Anachron.kicad_sch")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/4a8d5b69-35d3-489b-a09e-215f0e3eb97b")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
+		(units
+			(unit
+				(name "A")
+				(pins "A4_B9" "A5" "A6" "A7" "A8" "A1_B12" "B4_A9" "B8" "B7" "B6" "B5"
+					"B1_A12" "S1" "S2" "S3" "S4"
+				)
+			)
+		)
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_poly
@@ -3714,7 +3836,7 @@
 			(at -0.25 -5.15)
 			(size 0.3 1.1)
 			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "/USB_D_P")
+			(net "/Power/USB_D_P")
 			(pinfunction "DP1_A6")
 			(pintype "bidirectional")
 			(solder_mask_margin 0.102)
@@ -3724,7 +3846,7 @@
 			(at 0.25 -5.15)
 			(size 0.3 1.1)
 			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "/USB_D_N")
+			(net "/Power/USB_D_N")
 			(pinfunction "DN1_A7")
 			(pintype "bidirectional")
 			(solder_mask_margin 0.102)
@@ -3774,7 +3896,7 @@
 			(at 0.75 -5.15)
 			(size 0.3 1.1)
 			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "/USB_D_P")
+			(net "/Power/USB_D_P")
 			(pinfunction "DP2_B6")
 			(pintype "bidirectional")
 			(solder_mask_margin 0.102)
@@ -3784,7 +3906,7 @@
 			(at -0.75 -5.15)
 			(size 0.3 1.1)
 			(layers "F.Cu" "F.Mask" "F.Paste")
-			(net "/USB_D_N")
+			(net "/Power/USB_D_N")
 			(pinfunction "DN2_B7")
 			(pintype "bidirectional")
 			(solder_mask_margin 0.102)
@@ -3997,6 +4119,115 @@
 			)
 		)
 	)
+	(footprint "TestPoint:TestPoint_Pad_D1.5mm"
+		(layer "F.Cu")
+		(uuid "92b2d30c-5885-4635-b6a7-ccee9ef3c041")
+		(at 203.6 137.9)
+		(descr "SMD pad as test Point, diameter 1.5mm")
+		(tags "test point SMD pad")
+		(property "Reference" "TP2"
+			(at 0 -1.648 0)
+			(layer "F.SilkS")
+			(uuid "6bd1f870-1165-41b4-9cf1-891d9cf59cef")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "VBAT"
+			(at 0 1.75 0)
+			(layer "F.Fab")
+			(uuid "85dd8d5c-5bda-4861-8e2a-6fd5eb152d68")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "a22b3c85-b005-4c91-b162-3239ef673863")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" "test point"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "fb268700-ec8e-4838-bbd7-67f8a0396d31")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property ki_fp_filters "Pin* Test*")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/d5f51361-b725-450b-9840-a1d103671b16")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
+		(units
+			(unit
+				(name "A")
+				(pins "1")
+			)
+		)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_circle
+			(center 0 0)
+			(end 0 0.95)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.SilkS")
+			(uuid "7a61c0f5-3f6b-459f-8a00-3435a8848ff4")
+		)
+		(fp_circle
+			(center 0 0)
+			(end 1.25 0)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "7fda42d8-d0d3-4b20-9b2f-3aa5aaf989ea")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 -1.65 0)
+			(layer "F.Fab")
+			(uuid "5fb43e4f-2bdf-41aa-87b8-be111e781ea6")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(pad "1" smd circle
+			(at 0 0)
+			(size 1.5 1.5)
+			(layers "F.Cu" "F.Mask")
+			(net "VBAT")
+			(pinfunction "1_1")
+			(pintype "passive")
+			(uuid "751af011-31db-4509-bfb4-72373da6770d")
+		)
+		(embedded_fonts no)
+	)
 	(footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm"
 		(layer "F.Cu")
 		(uuid "948ea6d8-eee0-4133-9d21-50a5e3e47120")
@@ -4053,9 +4284,9 @@
 				)
 			)
 		)
-		(path "/9c9faece-4a17-44ec-944f-2ce32a1e8f59")
-		(sheetname "/")
-		(sheetfile "Anachron.kicad_sch")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/1ae169c8-b767-4098-b9bf-e670db4a4032")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -4204,7 +4435,7 @@
 			(at -0.65 0)
 			(size 1 0.5)
 			(layers "F.Cu" "F.Mask")
-			(net "/EN Mode")
+			(net "/Power/EN Mode")
 			(pinfunction "A_1")
 			(pintype "passive")
 			(zone_connect 2)
@@ -4338,9 +4569,9 @@
 			)
 		)
 		(property ki_fp_filters "R_*")
-		(path "/b9e6d4e0-ed19-4ccf-af6c-fc6c18e75719")
-		(sheetname "/")
-		(sheetfile "Anachron.kicad_sch")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/2be50ba1-1b5e-45d3-a390-db5c9a4a9309")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -4497,9 +4728,9 @@
 			)
 		)
 		(property ki_fp_filters "R_*")
-		(path "/acbcdd1e-d2e9-4c00-9655-0d9277f58c23")
-		(sheetname "/")
-		(sheetfile "Anachron.kicad_sch")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/2f130ee7-a1f3-4379-aab2-e67453069a88")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -4657,9 +4888,9 @@
 			)
 		)
 		(property ki_fp_filters "R_*")
-		(path "/95eaad22-5a8c-4f51-aa29-ea719a0e14ee")
-		(sheetname "/")
-		(sheetfile "Anachron.kicad_sch")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/eedcb4a5-fcf3-437f-ac5a-9c8f3f489d84")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -4816,9 +5047,9 @@
 			)
 		)
 		(property ki_fp_filters "C_*")
-		(path "/8fe9fa96-cec9-4f11-9354-e39287babe3f")
-		(sheetname "/")
-		(sheetfile "Anachron.kicad_sch")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/d42175e1-0f77-43c8-b467-e5892474803c")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -5027,9 +5258,9 @@
 				)
 			)
 		)
-		(path "/d2cf6b27-fa7d-42cb-8b11-2e41ef49ae95")
-		(sheetname "/")
-		(sheetfile "Anachron.kicad_sch")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/dedd1742-ed01-4b64-9ef1-d96c38a4ada4")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -5311,9 +5542,9 @@
 			)
 		)
 		(property ki_fp_filters "C_*")
-		(path "/d56952c7-6805-4c47-b300-07c16b42998c")
-		(sheetname "/")
-		(sheetfile "Anachron.kicad_sch")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/f0476b5b-a4a1-4a6a-a2fc-18d67fc9a7b3")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -5406,6 +5637,115 @@
 			)
 		)
 	)
+	(footprint "TestPoint:TestPoint_Pad_D1.5mm"
+		(layer "F.Cu")
+		(uuid "cdbf07b8-07f8-4d5e-bb32-8573d1a3df3a")
+		(at 203.6 141.45)
+		(descr "SMD pad as test Point, diameter 1.5mm")
+		(tags "test point SMD pad")
+		(property "Reference" "TP3"
+			(at 0 -1.648 0)
+			(layer "F.SilkS")
+			(uuid "55d34c05-5bc2-4ff1-8553-7f68fe68ab8f")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 0 1.75 0)
+			(layer "F.Fab")
+			(uuid "65235480-df33-4e4f-9c99-386b7db4b961")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "bcd85493-0c34-4dae-a5f4-6de231df60e8")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" "test point"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "404e9b18-db65-4cb2-858d-bbf57728979b")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property ki_fp_filters "Pin* Test*")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/44d29b78-d491-4d8b-9fd7-c28d2d9cee44")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
+		(units
+			(unit
+				(name "A")
+				(pins "1")
+			)
+		)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_circle
+			(center 0 0)
+			(end 0 0.95)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.SilkS")
+			(uuid "b99011cc-431e-4725-bcf3-2b9fe7174dfb")
+		)
+		(fp_circle
+			(center 0 0)
+			(end 1.25 0)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "d10c057c-2b67-4a65-90ed-059178182294")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 -1.65 0)
+			(layer "F.Fab")
+			(uuid "3475f68d-30af-481f-ae22-50b9e9856bd1")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(pad "1" smd circle
+			(at 0 0)
+			(size 1.5 1.5)
+			(layers "F.Cu" "F.Mask")
+			(net "+3.3V")
+			(pinfunction "1_1")
+			(pintype "passive")
+			(uuid "f2a0df2c-6562-4288-9323-127c2f023ebc")
+		)
+		(embedded_fonts no)
+	)
 	(footprint "Capacitor_SMD:C_0603_1608Metric"
 		(layer "F.Cu")
 		(uuid "eee7fd61-719c-49a3-8c87-50ba5ef550bc")
@@ -5471,9 +5811,9 @@
 			)
 		)
 		(property ki_fp_filters "C_*")
-		(path "/9f78eeb9-30c7-48f6-b951-c53b2e2dd0d0")
-		(sheetname "/")
-		(sheetfile "Anachron.kicad_sch")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/67870233-9533-4ca9-87f7-baf75b9083b9")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -5630,9 +5970,9 @@
 			)
 		)
 		(property ki_fp_filters "C_*")
-		(path "/ee46e594-aeaf-49a1-be0f-cf9bc87bc4ad")
-		(sheetname "/")
-		(sheetfile "Anachron.kicad_sch")
+		(path "/dcfe3f28-6e13-4570-a0fb-366e159363ae/d4b9d9f5-abb2-4241-b5fa-9ac1d14e391b")
+		(sheetname "/Power/")
+		(sheetfile "power.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -5850,7 +6190,7 @@
 		(mid 125.744292 108.753991)
 		(end 126.043318 108.325998)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -5860,7 +6200,7 @@
 		(start 126.112968 108.249831)
 		(end 126.043318 108.325998)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -5871,7 +6211,7 @@
 		(mid 126.37481 107.594341)
 		(end 126.112968 108.249831)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -5882,7 +6222,7 @@
 		(mid 122.171544 84.712051)
 		(end 139.479769 70.228798)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -5892,7 +6232,7 @@
 		(center 127.519273 109.675649)
 		(end 128.644273 109.675649)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(fill no)
@@ -5903,7 +6243,7 @@
 		(start 127.72817 87.479309)
 		(end 133.47817 87.479309)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -5913,7 +6253,7 @@
 		(start 127.72817 88.518642)
 		(end 127.72817 87.479309)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -5923,7 +6263,7 @@
 		(start 127.72817 98.889975)
 		(end 127.995901 98.889975)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -5933,7 +6273,7 @@
 		(start 127.72817 99.929309)
 		(end 127.72817 98.889975)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -5943,7 +6283,7 @@
 		(start 127.995901 88.518642)
 		(end 127.72817 88.518642)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -5953,7 +6293,7 @@
 		(start 127.995901 98.889975)
 		(end 127.995901 88.518642)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -5964,7 +6304,7 @@
 		(mid 126.16961 111.151592)
 		(end 125.566233 109.244797)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -5975,7 +6315,7 @@
 		(mid 128.639575 111.333263)
 		(end 128.122627 111.582469)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -5986,7 +6326,7 @@
 		(mid 129.675309 110.631618)
 		(end 130.345713 110.783219)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -5996,7 +6336,7 @@
 		(center 131.319881 78.377045)
 		(end 133.069881 78.377045)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(fill no)
@@ -6007,7 +6347,7 @@
 		(start 133.47817 87.479309)
 		(end 133.47817 99.929309)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6017,7 +6357,7 @@
 		(start 133.47817 99.929309)
 		(end 127.72817 99.929309)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6028,7 +6368,7 @@
 		(mid 132.865117 112.323749)
 		(end 130.345713 110.783219)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6039,7 +6379,7 @@
 		(mid 136.277603 114.070504)
 		(end 136.547702 114.929192)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6049,7 +6389,7 @@
 		(start 136.547702 114.929192)
 		(end 136.547702 115.692267)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6060,7 +6400,7 @@
 		(mid 136.97824 116.744051)
 		(end 136.547702 115.692267)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6081,7 +6421,7 @@
 		(mid 138.425472 117.067628)
 		(end 138.022702 117.186075)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6092,7 +6432,7 @@
 		(mid 140.090686 70.394026)
 		(end 140.3577 70.967806)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6102,7 +6442,7 @@
 		(start 140.3577 72.724054)
 		(end 140.3577 70.967806)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6113,7 +6453,7 @@
 		(mid 140.430923 72.900831)
 		(end 140.3577 72.724054)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6123,7 +6463,7 @@
 		(start 141.6427 72.974054)
 		(end 140.6077 72.974054)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6134,7 +6474,7 @@
 		(mid 141.713411 73.003343)
 		(end 141.7427 73.074054)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6144,7 +6484,7 @@
 		(start 141.7427 73.274054)
 		(end 141.7427 73.074054)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6155,7 +6495,7 @@
 		(mid 141.771989 73.344765)
 		(end 141.7427 73.274054)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6165,7 +6505,7 @@
 		(start 142.3927 73.374054)
 		(end 141.8427 73.374054)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6175,7 +6515,7 @@
 		(start 142.4927 73.074054)
 		(end 142.4927 73.274054)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6186,7 +6526,7 @@
 		(mid 142.521989 73.003343)
 		(end 142.5927 72.974054)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6197,7 +6537,7 @@
 		(mid 142.463411 73.344765)
 		(end 142.3927 73.374054)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6207,7 +6547,7 @@
 		(start 144.0427 72.974054)
 		(end 142.5927 72.974054)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6218,7 +6558,7 @@
 		(mid 144.113412 73.003343)
 		(end 144.1427 73.074054)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6228,7 +6568,7 @@
 		(start 144.1427 73.274054)
 		(end 144.1427 73.074054)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6239,7 +6579,7 @@
 		(mid 144.171991 73.344764)
 		(end 144.1427 73.274054)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6249,7 +6589,7 @@
 		(start 144.7927 73.374054)
 		(end 144.2427 73.374054)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6259,7 +6599,7 @@
 		(start 144.8927 73.074054)
 		(end 144.8927 73.274054)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6270,7 +6610,7 @@
 		(mid 144.921989 73.003343)
 		(end 144.9927 72.974054)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6281,7 +6621,7 @@
 		(mid 144.863411 73.344764)
 		(end 144.7927 73.374054)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6291,7 +6631,7 @@
 		(start 146.0277 72.974054)
 		(end 144.9927 72.974054)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6301,7 +6641,7 @@
 		(start 146.2777 70.967805)
 		(end 146.2777 72.724054)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6312,7 +6652,7 @@
 		(mid 146.544713 70.394023)
 		(end 147.155631 70.228797)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6323,7 +6663,7 @@
 		(mid 146.204477 72.90083)
 		(end 146.0277 72.974054)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6334,7 +6674,7 @@
 		(mid 164.463859 84.712049)
 		(end 160.496888 106.929215)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6355,7 +6695,7 @@
 		(mid 148.206328 117.071159)
 		(end 147.93 116.75)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6366,7 +6706,7 @@
 		(mid 150.357787 114.070488)
 		(end 151.070827 113.521058)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6377,7 +6717,7 @@
 		(mid 149.65716 116.744043)
 		(end 148.612702 117.192058)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6387,7 +6727,7 @@
 		(start 150.087702 115.692267)
 		(end 150.087702 114.929192)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6397,7 +6737,7 @@
 		(start 152.22817 82.018795)
 		(end 156.22817 82.018795)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6407,7 +6747,7 @@
 		(start 152.22817 104.018795)
 		(end 152.22817 82.018795)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6417,7 +6757,7 @@
 		(center 154.863499 77.880236)
 		(end 156.513499 77.880236)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(fill no)
@@ -6428,7 +6768,7 @@
 		(start 156.22817 82.018795)
 		(end 156.22817 104.018795)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6438,7 +6778,7 @@
 		(start 156.22817 104.018795)
 		(end 152.22817 104.018795)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6449,7 +6789,7 @@
 		(mid 153.770287 112.323749)
 		(end 151.070827 113.521058)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6460,7 +6800,7 @@
 		(mid 156.960088 110.631627)
 		(end 157.569994 110.948551)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6471,7 +6811,7 @@
 		(mid 157.995826 111.333266)
 		(end 157.569994 110.948551)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6481,7 +6821,7 @@
 		(center 159.116131 109.675649)
 		(end 160.241131 109.675649)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(fill no)
@@ -6493,7 +6833,7 @@
 		(mid 160.260596 107.594342)
 		(end 160.496888 106.929215)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6504,7 +6844,7 @@
 		(mid 160.801803 110.751995)
 		(end 158.512777 111.582469)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
@@ -6514,7 +6854,7 @@
 		(start 160.592086 108.325998)
 		(end 160.522436 108.249831)
 		(stroke
-			(width 0)
+			(width 0.1)
 			(type default)
 		)
 		(layer "Edge.Cuts")
