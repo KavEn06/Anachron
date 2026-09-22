@@ -661,7 +661,7 @@
         "uuid": "05e7c6ef-b370-43a4-82c0-82f37f32c760"
       }
     ],
-    "used_designators": "R5,#PWR25",
+    "used_designators": "S4-6,SW2,C13-15,R5,R11-15,#PWR25,#PWR32,#PWR34,#PWR37-45",
     "variants": []
   },
   "sheets": [
@@ -676,6 +676,10 @@
     [
       "7cd6ee79-c0b8-43bd-bc0e-9cb53a026857",
       "MCU + Screen"
+    ],
+    [
+      "b0f66910-b91e-42a0-b088-9df41a9888a7",
+      "Peripherals"
     ]
   ],
   "text_variables": {},

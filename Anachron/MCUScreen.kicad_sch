@@ -1620,6 +1620,145 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "power:VBUS"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "VBUS"
+				(at 0 3.556 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"VBUS\""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "VBUS_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "VBUS_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "symbols:FFC2B35-18-G_REVA2"
 			(pin_names
 				(offset 1.016)
@@ -2442,16 +2581,16 @@
 		(uuid "3ee8e7f9-82f7-4251-8680-73b491dec0db")
 	)
 	(junction
-		(at 233.68 123.19)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "4b1e0842-e0ca-420e-84c4-3aa10399c890")
-	)
-	(junction
 		(at 123.19 59.69)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4d8c2a8f-31f0-4212-b2d1-eae48997c3e3")
+	)
+	(junction
+		(at 118.11 102.87)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "500b0a8f-e98a-47a8-9519-9aabe2e765cc")
 	)
 	(junction
 		(at 44.45 33.02)
@@ -2472,10 +2611,22 @@
 		(uuid "a7cc0b4c-46a5-4e4b-addf-f207b9f72d22")
 	)
 	(junction
+		(at 113.03 113.03)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ad8a611c-abfd-4919-8758-0a9c8e11527c")
+	)
+	(junction
 		(at 146.05 49.53)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c4bff3c1-cf81-4ba7-941d-3adc8d2fc7b8")
+	)
+	(junction
+		(at 113.03 102.87)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "cd1f2726-78c5-443b-beed-c3d814a7635d")
 	)
 	(junction
 		(at 209.55 123.19)
@@ -2543,16 +2694,6 @@
 	)
 	(wire
 		(pts
-			(xy 233.68 124.46) (xy 233.68 123.19)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0133c944-434b-4ff7-b205-76cd1bc37a85")
-	)
-	(wire
-		(pts
 			(xy 180.34 121.92) (xy 180.34 123.19)
 		)
 		(stroke
@@ -2603,6 +2744,16 @@
 	)
 	(wire
 		(pts
+			(xy 83.82 57.15) (xy 82.55 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1b5e6ab8-4a0c-498d-b888-64d2df47a38d")
+	)
+	(wire
+		(pts
 			(xy 181.61 80.01) (xy 191.77 80.01)
 		)
 		(stroke
@@ -2633,7 +2784,17 @@
 	)
 	(wire
 		(pts
-			(xy 146.05 49.53) (xy 149.86 49.53)
+			(xy 113.03 102.87) (xy 118.11 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2175340f-20cb-4ceb-b766-1a8a10be5c95")
+	)
+	(wire
+		(pts
+			(xy 146.05 49.53) (xy 163.83 49.53)
 		)
 		(stroke
 			(width 0)
@@ -2753,6 +2914,16 @@
 	)
 	(wire
 		(pts
+			(xy 113.03 114.3) (xy 113.03 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3a0c70df-7fb3-48ef-9fb0-c93a9b67fa98")
+	)
+	(wire
+		(pts
 			(xy 39.37 90.17) (xy 52.07 90.17)
 		)
 		(stroke
@@ -2773,16 +2944,6 @@
 	)
 	(wire
 		(pts
-			(xy 82.55 59.69) (xy 92.71 59.69)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "415eee79-453d-42cb-8b49-7e7bac9b8dfa")
-	)
-	(wire
-		(pts
 			(xy 29.21 33.02) (xy 34.29 33.02)
 		)
 		(stroke
@@ -2790,6 +2951,26 @@
 			(type default)
 		)
 		(uuid "478e3238-4a39-49d7-9c77-718d60b57c50")
+	)
+	(wire
+		(pts
+			(xy 118.11 102.87) (xy 128.27 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4a24bb75-e189-40a5-a8d7-8580dd8ac795")
+	)
+	(wire
+		(pts
+			(xy 113.03 100.33) (xy 113.03 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4b675e58-3cd6-460b-8165-599cf77cef82")
 	)
 	(wire
 		(pts
@@ -2813,6 +2994,16 @@
 	)
 	(wire
 		(pts
+			(xy 118.11 105.41) (xy 118.11 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "57d936d1-6489-4179-a426-f0c3794084d6")
+	)
+	(wire
+		(pts
 			(xy 67.31 99.06) (xy 67.31 97.79)
 		)
 		(stroke
@@ -2820,6 +3011,16 @@
 			(type default)
 		)
 		(uuid "5c14daa9-4a6d-4744-9ac8-f9cc528442ad")
+	)
+	(wire
+		(pts
+			(xy 113.03 102.87) (xy 113.03 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "607f59a4-18a9-4ec7-b821-b786de58c7ad")
 	)
 	(wire
 		(pts
@@ -2883,6 +3084,16 @@
 	)
 	(wire
 		(pts
+			(xy 113.03 95.25) (xy 113.03 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "771bcebf-87ab-4369-bfc6-b81b1d78b618")
+	)
+	(wire
+		(pts
 			(xy 181.61 67.31) (xy 191.77 67.31)
 		)
 		(stroke
@@ -2930,16 +3141,6 @@
 			(type default)
 		)
 		(uuid "8bd648f7-863b-418e-8441-ee5b29e10f67")
-	)
-	(wire
-		(pts
-			(xy 233.68 129.54) (xy 233.68 130.81)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9171414d-1c1b-46b2-90dd-168cb75eee7c")
 	)
 	(wire
 		(pts
@@ -3073,6 +3274,16 @@
 	)
 	(wire
 		(pts
+			(xy 118.11 110.49) (xy 118.11 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bdb26e34-910a-4e35-97de-ab45a118e76b")
+	)
+	(wire
+		(pts
 			(xy 82.55 49.53) (xy 92.71 49.53)
 		)
 		(stroke
@@ -3080,6 +3291,16 @@
 			(type default)
 		)
 		(uuid "c09b8414-7862-4b66-b3fe-8e89cedfd98c")
+	)
+	(wire
+		(pts
+			(xy 83.82 59.69) (xy 82.55 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c297d0b5-f92e-4c28-aea7-b263f869d9b8")
 	)
 	(wire
 		(pts
@@ -3213,16 +3434,6 @@
 	)
 	(wire
 		(pts
-			(xy 82.55 57.15) (xy 92.71 57.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "eaeb7fb3-3b6b-4241-922f-9a121df53f1e")
-	)
-	(wire
-		(pts
 			(xy 180.34 115.57) (xy 180.34 116.84)
 		)
 		(stroke
@@ -3230,6 +3441,16 @@
 			(type default)
 		)
 		(uuid "f0cfd473-df58-4578-9346-eba08b937c03")
+	)
+	(wire
+		(pts
+			(xy 113.03 113.03) (xy 118.11 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f787322c-db29-4870-8d6b-504a1f7e82ab")
 	)
 	(wire
 		(pts
@@ -3243,15 +3464,15 @@
 	)
 	(wire
 		(pts
-			(xy 168.91 49.53) (xy 154.94 49.53)
+			(xy 113.03 110.49) (xy 113.03 113.03)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "fe19fc64-bf05-4a5c-8728-22d39521b53f")
+		(uuid "fdd63032-1db7-4495-a351-c8c1124eb99f")
 	)
-	(label "TP_SCL"
+	(label "SCL"
 		(at 181.61 62.23 0)
 		(effects
 			(font
@@ -3371,6 +3592,16 @@
 		)
 		(uuid "6758822c-a4dc-46e4-a9e8-d1da84ccdc0b")
 	)
+	(label "Battery ADC"
+		(at 128.27 102.87 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "8cc3cdb4-711f-4f30-bcbe-83377023f9f8")
+	)
 	(label "LCD_RST"
 		(at 181.61 74.93 0)
 		(effects
@@ -3382,7 +3613,7 @@
 		(uuid "94ce4b4c-e1df-41b5-bfbd-15ee88b520e2")
 	)
 	(label "MCU_OSC_P"
-		(at 168.91 49.53 180)
+		(at 163.83 49.53 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3421,7 +3652,7 @@
 		)
 		(uuid "baa585e0-7667-415c-9209-d26dde2e84cd")
 	)
-	(label "TP_SDA"
+	(label "SDA"
 		(at 181.61 59.69 0)
 		(effects
 			(font
@@ -3451,16 +3682,6 @@
 		)
 		(uuid "c9eea5ae-a81e-4ffb-8a96-640a136d4ddd")
 	)
-	(label "MCU_D_N"
-		(at 92.71 57.15 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "cdb0035c-8821-459d-b2ad-09e2d4b2aa13")
-	)
 	(label "LCD_BL"
 		(at 181.61 90.17 0)
 		(effects
@@ -3480,16 +3701,6 @@
 			(justify left bottom)
 		)
 		(uuid "dcedcc08-3208-4a45-905d-d1c5926f7051")
-	)
-	(label "MCU_D_P"
-		(at 92.71 59.69 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "e3eb4c05-abe5-4f36-88f6-b2beca946878")
 	)
 	(label "LCD_IO2"
 		(at 181.61 77.47 0)
@@ -3520,6 +3731,54 @@
 			(justify right bottom)
 		)
 		(uuid "ff06e200-62a5-4d84-bbbe-3bad1c70597b")
+	)
+	(global_label "MCU_D_P"
+		(shape input)
+		(at 83.82 59.69 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8d9fd936-e7bd-4fbb-b432-2e1e427eca8c")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 95.3323 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "MCU_D_N"
+		(shape input)
+		(at 83.82 57.15 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "eb011d46-8cb1-49f8-966c-b8001438c400")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 95.3928 57.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
 	)
 	(symbol
 		(lib_id "Device:C_Small")
@@ -3555,7 +3814,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 123.19 54.61 0)
 			(hide yes)
 			(show_name no)
@@ -3889,10 +4148,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "36bf3298-754c-4603-9705-4f8e7dd12c39")
 		(property "Reference" "J2"
-			(at 208.28 69.8499 0)
+			(at 196.596 45.974 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3903,7 +4161,7 @@
 			)
 		)
 		(property "Value" "FFC2B35-18-G_REVA2"
-			(at 208.28 72.3899 0)
+			(at 196.596 96.52 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4145,6 +4403,87 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
+		(at 118.11 107.95 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "41ba0c08-61a2-465f-9f1c-7a87e579d860")
+		(property "Reference" "C10"
+			(at 120.65 106.6862 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF"
+			(at 120.65 109.2262 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 118.11 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 118.11 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 118.11 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "46e80cb9-eb36-4502-b6de-8a065afad898")
+		)
+		(pin "2"
+			(uuid "bcee827e-8a13-40fd-90c4-dcf0382fee48")
+		)
+		(instances
+			(project "Anachron"
+				(path "/05e7c6ef-b370-43a4-82c0-82f37f32c760/7cd6ee79-c0b8-43bd-bc0e-9cb53a026857"
+					(reference "C10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
 		(at 38.1 46.99 90)
 		(mirror x)
 		(unit 1)
@@ -4337,7 +4676,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 44.45 38.1 0)
 			(hide yes)
 			(show_name no)
@@ -4418,7 +4757,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 146.05 54.61 0)
 			(hide yes)
 			(show_name no)
@@ -4461,85 +4800,6 @@
 			(project "Anachron"
 				(path "/05e7c6ef-b370-43a4-82c0-82f37f32c760/7cd6ee79-c0b8-43bd-bc0e-9cb53a026857"
 					(reference "C12")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small_US")
-		(at 152.4 49.53 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "6dba00bf-83e6-4694-b6f6-5f6b363f294e")
-		(property "Reference" "R10"
-			(at 150.368 47.244 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "0"
-			(at 154.432 47.244 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 152.4 49.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 152.4 49.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor, small US symbol"
-			(at 152.4 49.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "98da5af1-7aac-4e24-9bc9-17851179480b")
-		)
-		(pin "1"
-			(uuid "938d6a61-dd62-4b77-9599-2f95a4c9e24d")
-		)
-		(instances
-			(project "Anachron"
-				(path "/05e7c6ef-b370-43a4-82c0-82f37f32c760/7cd6ee79-c0b8-43bd-bc0e-9cb53a026857"
-					(reference "R10")
 					(unit 1)
 				)
 			)
@@ -4655,7 +4915,7 @@
 				)
 			)
 		)
-		(property "Footprint" "TS18-5-25-SL-160-SMT-TR:SW_TS18-5-25-SL-160-SMT-TR"
+		(property "Footprint" "footprints:SW_TS18-5-25-SL-160-SMT-TR"
 			(at 252.73 125.73 0)
 			(hide yes)
 			(show_name no)
@@ -4741,6 +5001,88 @@
 			(project "Anachron"
 				(path "/05e7c6ef-b370-43a4-82c0-82f37f32c760/7cd6ee79-c0b8-43bd-bc0e-9cb53a026857"
 					(reference "S2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small_US")
+		(at 113.03 107.95 0)
+		(mirror y)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "79a4e008-1fe6-4fab-9c96-e317a4a790ab")
+		(property "Reference" "R12"
+			(at 111.252 106.68 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100k"
+			(at 111.252 109.22 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 113.03 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 113.03 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor, small US symbol"
+			(at 113.03 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "9242d202-85c5-497a-a8e5-13cd512bff12")
+		)
+		(pin "1"
+			(uuid "52332335-f08f-452c-86d4-ede261a2af54")
+		)
+		(instances
+			(project "Anachron"
+				(path "/05e7c6ef-b370-43a4-82c0-82f37f32c760/7cd6ee79-c0b8-43bd-bc0e-9cb53a026857"
+					(reference "R12")
 					(unit 1)
 				)
 			)
@@ -4858,7 +5200,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 180.34 127 0)
 			(hide yes)
 			(show_name no)
@@ -5334,7 +5676,7 @@
 				)
 			)
 		)
-		(property "Footprint" "TS18-5-25-SL-160-SMT-TR:SW_TS18-5-25-SL-160-SMT-TR"
+		(property "Footprint" "footprints:SW_TS18-5-25-SL-160-SMT-TR"
 			(at 199.39 125.73 0)
 			(hide yes)
 			(show_name no)
@@ -5541,7 +5883,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 233.68 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -5584,6 +5926,165 @@
 			(project "Anachron"
 				(path "/05e7c6ef-b370-43a4-82c0-82f37f32c760/7cd6ee79-c0b8-43bd-bc0e-9cb53a026857"
 					(reference "R8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small_US")
+		(at 113.03 97.79 0)
+		(mirror y)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "b6bdae83-47fc-49c0-bb74-c3b2ead1c1b1")
+		(property "Reference" "R11"
+			(at 111.252 96.52 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100k"
+			(at 111.252 99.06 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 113.03 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 113.03 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor, small US symbol"
+			(at 113.03 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "8fbd1ea9-7f78-4f59-b606-45c4c9db9051")
+		)
+		(pin "1"
+			(uuid "046cfb47-19a8-4cca-97ec-607c4f2c40b2")
+		)
+		(instances
+			(project "Anachron"
+				(path "/05e7c6ef-b370-43a4-82c0-82f37f32c760/7cd6ee79-c0b8-43bd-bc0e-9cb53a026857"
+					(reference "R11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VBUS")
+		(at 113.03 93.98 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "bee0015d-b623-4eb6-8185-227554ae692d")
+		(property "Reference" "#PWR034"
+			(at 113.03 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "VBAT"
+			(at 113.03 88.9 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 113.03 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 113.03 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VBUS\""
+			(at 113.03 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "879d0c63-2883-47a9-a336-687f810e2d3d")
+		)
+		(instances
+			(project "Anachron"
+				(path "/05e7c6ef-b370-43a4-82c0-82f37f32c760/7cd6ee79-c0b8-43bd-bc0e-9cb53a026857"
+					(reference "#PWR034")
 					(unit 1)
 				)
 			)
@@ -5937,7 +6438,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 180.34 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -6016,7 +6517,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 119.38 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -6066,8 +6567,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 233.68 130.81 0)
-		(mirror y)
+		(at 113.03 114.3 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6076,9 +6576,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "eb2a4181-dce5-4745-a3a4-2a9bcdb29b3f")
-		(property "Reference" "#PWR032"
-			(at 233.68 137.16 0)
+		(uuid "ee773b61-4fa5-47a3-bb1b-9bcda9601c5d")
+		(property "Reference" "#PWR037"
+			(at 113.03 120.65 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6089,7 +6589,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 233.68 135.89 0)
+			(at 113.03 119.38 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6099,7 +6599,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 233.68 130.81 0)
+			(at 113.03 114.3 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6110,7 +6610,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 233.68 130.81 0)
+			(at 113.03 114.3 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6121,7 +6621,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 233.68 130.81 0)
+			(at 113.03 114.3 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6132,94 +6632,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "e8e47a0f-9caf-4ae0-b4b6-cd3aca10fd2d")
+			(uuid "caaebafa-c3bc-4f47-a699-db466315b9b4")
 		)
 		(instances
 			(project "Anachron"
 				(path "/05e7c6ef-b370-43a4-82c0-82f37f32c760/7cd6ee79-c0b8-43bd-bc0e-9cb53a026857"
-					(reference "#PWR032")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Small")
-		(at 233.68 127 0)
-		(mirror y)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "f78ba7aa-6215-4520-af5e-5bd642d1b5d0")
-		(property "Reference" "C10"
-			(at 231.14 125.7362 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "100nF"
-			(at 231.14 128.2762 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 233.68 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 233.68 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 233.68 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "a7551ab7-15c9-44d9-9b8c-0aa1aa87a364")
-		)
-		(pin "2"
-			(uuid "f66e8e4b-1634-441c-a589-7081ad15141e")
-		)
-		(instances
-			(project "Anachron"
-				(path "/05e7c6ef-b370-43a4-82c0-82f37f32c760/7cd6ee79-c0b8-43bd-bc0e-9cb53a026857"
-					(reference "C10")
+					(reference "#PWR037")
 					(unit 1)
 				)
 			)

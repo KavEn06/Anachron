@@ -52,6 +52,52 @@
 		)
 	)
 	(sheet
+		(at 110.49 58.42)
+		(size 25.4 11.43)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "b0f66910-b91e-42a0-b088-9df41a9888a7")
+		(property "Sheetname" "Peripherals"
+			(at 110.49 57.7084 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Peripherals.kicad_sch"
+			(at 110.49 70.4346 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Anachron"
+				(path "/05e7c6ef-b370-43a4-82c0-82f37f32c760"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 38.735 59.055)
 		(size 23.495 12.065)
 		(exclude_from_sim no)
