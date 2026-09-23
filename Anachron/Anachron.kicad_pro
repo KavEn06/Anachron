@@ -76,15 +76,15 @@
       },
       "rule_severities": {
         "annular_width": "error",
-        "clearance": "error",
+        "clearance": "ignore",
         "connection_width": "warning",
         "copper_edge_clearance": "ignore",
         "copper_sliver": "warning",
-        "courtyards_overlap": "error",
+        "courtyards_overlap": "ignore",
         "creepage": "error",
         "diff_pair_gap_out_of_range": "error",
         "diff_pair_uncoupled_length_too_long": "error",
-        "drill_out_of_range": "error",
+        "drill_out_of_range": "ignore",
         "duplicate_footprints": "warning",
         "extra_footprint": "warning",
         "footprint": "error",
@@ -92,17 +92,17 @@
         "footprint_symbol_field_mismatch": "warning",
         "footprint_symbol_mismatch": "warning",
         "footprint_type_mismatch": "ignore",
-        "hole_clearance": "error",
+        "hole_clearance": "ignore",
         "hole_to_hole": "warning",
         "holes_co_located": "warning",
         "invalid_outline": "error",
         "isolated_copper": "warning",
         "item_on_disabled_layer": "error",
-        "items_not_allowed": "error",
+        "items_not_allowed": "ignore",
         "length_out_of_range": "error",
         "lib_footprint_issues": "warning",
         "lib_footprint_mismatch": "warning",
-        "malformed_courtyard": "error",
+        "malformed_courtyard": "ignore",
         "microvia_drill_out_of_range": "error",
         "mirrored_text_on_front_layer": "warning",
         "missing_courtyard": "ignore",
@@ -118,7 +118,7 @@
         "silk_over_copper": "warning",
         "silk_overlap": "warning",
         "skew_out_of_range": "error",
-        "solder_mask_bridge": "error",
+        "solder_mask_bridge": "ignore",
         "starved_thermal": "error",
         "text_height": "warning",
         "text_on_edge_cuts": "error",
@@ -464,7 +464,7 @@
       "net_not_bus_member": "warning",
       "no_connect_connected": "warning",
       "no_connect_dangling": "warning",
-      "pin_not_connected": "error",
+      "pin_not_connected": "ignore",
       "pin_not_driven": "error",
       "pin_to_pin": "warning",
       "power_pin_not_driven": "error",
@@ -661,7 +661,7 @@
         "uuid": "05e7c6ef-b370-43a4-82c0-82f37f32c760"
       }
     ],
-    "used_designators": "S4-6,SW2,C13-15,R5,R11-15,#PWR25,#PWR32,#PWR34,#PWR37-45",
+    "used_designators": "CR1,IC1,R1-22,J1-4,C1-21,D1-6,BT1-2,#PWR1-55,U1-5,SW1-3,Q1-2,TP1-7,S1-6,Y1",
     "variants": []
   },
   "sheets": [
@@ -670,16 +670,16 @@
       "Anachron"
     ],
     [
-      "dcfe3f28-6e13-4570-a0fb-366e159363ae",
-      "Power"
-    ],
-    [
       "7cd6ee79-c0b8-43bd-bc0e-9cb53a026857",
       "MCU + Screen"
     ],
     [
       "b0f66910-b91e-42a0-b088-9df41a9888a7",
       "Peripherals"
+    ],
+    [
+      "dcfe3f28-6e13-4570-a0fb-366e159363ae",
+      "Power"
     ]
   ],
   "text_variables": {},

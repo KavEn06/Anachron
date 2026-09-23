@@ -5,14 +5,143 @@
 	(uuid "05e7c6ef-b370-43a4-82c0-82f37f32c760")
 	(paper "A4")
 	(lib_symbols)
+	(wire
+		(pts
+			(xy 63.5 63.5) (xy 73.66 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1fde337d-b1b4-44d8-99ad-b453c5f85d65")
+	)
+	(wire
+		(pts
+			(xy 102.87 59.69) (xy 113.03 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "341a802f-f3e5-40c1-bb32-b07e95080480")
+	)
+	(wire
+		(pts
+			(xy 63.5 59.69) (xy 73.66 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "341e52ac-501e-41d2-bb37-66be47ea72fa")
+	)
+	(wire
+		(pts
+			(xy 102.87 67.31) (xy 113.03 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "671e1943-560d-4546-912e-0e823b8fc186")
+	)
+	(wire
+		(pts
+			(xy 102.87 69.85) (xy 113.03 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6f4af134-8cf1-4346-9d63-282c4310f288")
+	)
+	(wire
+		(pts
+			(xy 102.87 49.53) (xy 113.03 49.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "73e8d977-9a54-4530-a811-5451d4d8ad93")
+	)
+	(wire
+		(pts
+			(xy 102.87 72.39) (xy 113.03 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8b4c65e9-8cfd-4884-aafc-d16d900164e6")
+	)
+	(wire
+		(pts
+			(xy 102.87 64.77) (xy 113.03 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bc50f79c-4558-4e2e-8bdb-b4eea38f83b6")
+	)
+	(wire
+		(pts
+			(xy 102.87 57.15) (xy 113.03 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cddccaf9-1655-48f3-bf10-a8917a856aa8")
+	)
+	(wire
+		(pts
+			(xy 102.87 54.61) (xy 113.03 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e61a5fe7-a41a-41c2-b59c-81b03f1cc3da")
+	)
+	(wire
+		(pts
+			(xy 102.87 52.07) (xy 113.03 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "edd7688c-5cb4-49af-964e-6eec05da6410")
+	)
+	(wire
+		(pts
+			(xy 102.87 74.93) (xy 113.03 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fe63ba27-ed29-43e0-be77-302103a30c34")
+	)
+	(wire
+		(pts
+			(xy 102.87 62.23) (xy 113.03 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ff00a87c-5657-4d5a-8d18-25cfc9af58be")
+	)
 	(sheet
-		(at 78.105 59.69)
-		(size 22.86 10.795)
+		(at 73.66 46.99)
+		(size 29.21 30.48)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
 			(type solid)
@@ -22,7 +151,7 @@
 		)
 		(uuid "7cd6ee79-c0b8-43bd-bc0e-9cb53a026857")
 		(property "Sheetname" "MCU + Screen"
-			(at 78.105 58.9784 0)
+			(at 73.66 46.2784 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -33,7 +162,7 @@
 			)
 		)
 		(property "Sheetfile" "MCUScreen.kicad_sch"
-			(at 78.105 71.0696 0)
+			(at 73.533 78.232 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -41,6 +170,136 @@
 					(size 1.27 1.27)
 				)
 				(justify left top)
+			)
+		)
+		(pin "MCU_D_N" input
+			(at 73.66 59.69 180)
+			(uuid "11ad21ff-7059-4afe-88f0-0e03c3f25fd9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MCU_D_P" input
+			(at 73.66 63.5 180)
+			(uuid "66298266-8f3f-40b1-aa01-0098a1202918")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "ADC_Button" input
+			(at 102.87 49.53 0)
+			(uuid "fe870cae-41e2-443d-90cc-be2b41846d41")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "AMP_BCLK" input
+			(at 102.87 52.07 0)
+			(uuid "00c9bf43-4944-49ad-96a4-77e6d84efc07")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "AMP_DIN" input
+			(at 102.87 54.61 0)
+			(uuid "0e3136f8-c3c0-4641-9f02-1cf2325b4df1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "AMP_LRCLK" input
+			(at 102.87 57.15 0)
+			(uuid "a3249c16-50d4-43cb-a70c-d2d194fa44a3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "AMP_Mode" input
+			(at 102.87 59.69 0)
+			(uuid "84040f76-d387-4776-8c5d-7bddab81d166")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "EN_A" input
+			(at 102.87 62.23 0)
+			(uuid "fbe5a8c2-c4de-40fe-952f-af0c018f3e3a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "EN_B" input
+			(at 102.87 64.77 0)
+			(uuid "131007dd-31ed-4d97-938f-2630c13fbec1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "IMU_INT1" input
+			(at 102.87 67.31 0)
+			(uuid "6ac7896a-c976-43fd-8408-bad62cd38275")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "IMU_INT2" input
+			(at 102.87 69.85 0)
+			(uuid "8280d0e4-f2b8-4955-83a9-3956eec0a234")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "SCL" input
+			(at 102.87 72.39 0)
+			(uuid "6936e6aa-249b-43ca-865c-f24195770fee")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "SDA" input
+			(at 102.87 74.93 0)
+			(uuid "af03be65-461b-4f11-8d7e-fcc2099f5a1e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 		(instances
@@ -52,13 +311,12 @@
 		)
 	)
 	(sheet
-		(at 110.49 58.42)
-		(size 25.4 11.43)
+		(at 113.03 46.99)
+		(size 17.78 30.48)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
 			(type solid)
@@ -68,7 +326,7 @@
 		)
 		(uuid "b0f66910-b91e-42a0-b088-9df41a9888a7")
 		(property "Sheetname" "Peripherals"
-			(at 110.49 57.7084 0)
+			(at 113.03 46.2784 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -79,7 +337,7 @@
 			)
 		)
 		(property "Sheetfile" "Peripherals.kicad_sch"
-			(at 110.49 70.4346 0)
+			(at 113.03 77.978 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -87,6 +345,116 @@
 					(size 1.27 1.27)
 				)
 				(justify left top)
+			)
+		)
+		(pin "ADC_Button" input
+			(at 113.03 49.53 180)
+			(uuid "860e18cf-21e3-4d7d-866f-6665dbcce4ca")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "AMP_BCLK" input
+			(at 113.03 52.07 180)
+			(uuid "7d664ec6-3d6c-4a85-b95f-2e07d9ece424")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "AMP_DIN" input
+			(at 113.03 54.61 180)
+			(uuid "07d16e2c-e5a7-43ea-ad08-614c58bc12b6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "AMP_LRCLK" input
+			(at 113.03 57.15 180)
+			(uuid "6d022a06-ab72-4b64-9b64-41d8ea1e233e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "AMP_Mode" input
+			(at 113.03 59.69 180)
+			(uuid "1f268c2d-e90e-4d2e-b66c-54f7378b66d5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "EN_A" input
+			(at 113.03 62.23 180)
+			(uuid "3d862d90-ace9-48c2-841f-3fcac36e3c24")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "EN_B" input
+			(at 113.03 64.77 180)
+			(uuid "6d039763-2a87-42ba-b935-50442ca68cfb")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "IMU_INT1" input
+			(at 113.03 67.31 180)
+			(uuid "d67788b7-20e5-4aee-9feb-23c3c3e3b80c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "IMU_INT2" input
+			(at 113.03 69.85 180)
+			(uuid "dc81e6c4-0798-4530-9f0b-f8fdba110178")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SCL" input
+			(at 113.03 72.39 180)
+			(uuid "1b2e730f-c4b0-43ee-9499-3ea48a069b77")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SDA" input
+			(at 113.03 74.93 180)
+			(uuid "7efc1238-f0c5-47ef-a660-08cf1a443729")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 		(instances
@@ -98,8 +466,8 @@
 		)
 	)
 	(sheet
-		(at 38.735 59.055)
-		(size 23.495 12.065)
+		(at 49.53 55.245)
+		(size 13.97 12.065)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -114,7 +482,7 @@
 		)
 		(uuid "dcfe3f28-6e13-4570-a0fb-366e159363ae")
 		(property "Sheetname" "Power"
-			(at 38.735 58.3434 0)
+			(at 49.53 54.5334 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -125,7 +493,7 @@
 			)
 		)
 		(property "Sheetfile" "power.kicad_sch"
-			(at 38.735 71.7046 0)
+			(at 49.53 67.8946 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -135,10 +503,30 @@
 				(justify left top)
 			)
 		)
+		(pin "MCU_D_N" input
+			(at 63.5 59.69 0)
+			(uuid "43c1da29-2f84-45c6-954f-5b5b90a8d1f1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MCU_D_P" input
+			(at 63.5 63.5 0)
+			(uuid "98ee3d0a-6cca-4c65-ad90-93a7f945822f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 		(instances
 			(project "Anachron"
 				(path "/05e7c6ef-b370-43a4-82c0-82f37f32c760"
-					(page "1")
+					(page "4")
 				)
 			)
 		)
