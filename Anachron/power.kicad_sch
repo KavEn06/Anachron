@@ -1922,7 +1922,7 @@
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "U1"
-				(at 8.89 3.81 0)
+				(at 12.954 3.81 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -1932,7 +1932,7 @@
 				)
 			)
 			(property "Value" "AP2112K-3.3TRG1"
-				(at 17.78 -9.144 0)
+				(at 21.844 -9.144 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -2010,8 +2010,8 @@
 			)
 			(symbol "AP2112K-3.3TRG1_1_1"
 				(rectangle
-					(start 7.62 2.54)
-					(end 25.4 -7.62)
+					(start 11.43 2.54)
+					(end 29.21 -7.62)
 					(stroke
 						(width 0.254)
 						(type solid)
@@ -2021,8 +2021,8 @@
 					)
 				)
 				(pin unspecified line
-					(at 2.54 -1.27 0)
-					(length 5.08)
+					(at 8.89 -1.27 0)
+					(length 2.54)
 					(name "VIN"
 						(effects
 							(font
@@ -2039,8 +2039,8 @@
 					)
 				)
 				(pin unspecified line
-					(at 2.54 -3.81 0)
-					(length 5.08)
+					(at 8.89 -3.81 0)
+					(length 2.54)
 					(name "GND"
 						(effects
 							(font
@@ -2057,8 +2057,8 @@
 					)
 				)
 				(pin unspecified line
-					(at 30.48 -5.08 180)
-					(length 5.08)
+					(at 31.75 -5.08 180)
+					(length 2.54)
 					(name "EN"
 						(effects
 							(font
@@ -2075,8 +2075,8 @@
 					)
 				)
 				(pin unspecified line
-					(at 30.48 -2.54 180)
-					(length 5.08)
+					(at 31.75 -2.54 180)
+					(length 2.54)
 					(name "NC"
 						(effects
 							(font
@@ -2093,8 +2093,8 @@
 					)
 				)
 				(pin unspecified line
-					(at 30.48 0 180)
-					(length 5.08)
+					(at 31.75 0 180)
+					(length 2.54)
 					(name "VOUT"
 						(effects
 							(font
@@ -2904,18 +2904,6 @@
 				)
 				(polyline
 					(pts
-						(xy 7.62 -12.7) (xy 25.4 -12.7)
-					)
-					(stroke
-						(width 0.127)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
 						(xy 10.16 -2.54) (xy 10.16 -7.62)
 					)
 					(stroke
@@ -3518,19 +3506,19 @@
 						(type solid)
 					)
 					(fill
-						(type color)
-						(color 255 255 194 1)
+						(type background)
 					)
 				)
-				(rectangle
-					(start 25.4 -12.7)
-					(end 7.62 2.54)
+				(polyline
+					(pts
+						(xy 7.62 -12.7) (xy 25.4 -12.7)
+					)
 					(stroke
-						(width 0)
-						(type default)
+						(width 0.254)
+						(type solid)
 					)
 					(fill
-						(type none)
+						(type background)
 					)
 				)
 			)
@@ -3561,7 +3549,7 @@
 		(uuid "157ae415-73cf-4fec-8a80-c53931d03153")
 	)
 	(junction
-		(at 200.66 66.04)
+		(at 205.74 66.04)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "195f89b9-c92e-4937-bbc4-de15eee03cc5")
@@ -3577,6 +3565,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "22863064-78a5-4093-8a05-3d5afbe1c301")
+	)
+	(junction
+		(at 205.74 73.66)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "24c45262-d266-4936-8b3f-0f361625c101")
 	)
 	(junction
 		(at 85.09 93.98)
@@ -3637,12 +3631,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9b6820a1-297e-47e6-b86b-12b705887213")
-	)
-	(junction
-		(at 200.66 73.66)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "a3e9e1ba-01b7-48f8-9152-59bb2879782c")
 	)
 	(junction
 		(at 254 64.77)
@@ -3772,16 +3760,6 @@
 	)
 	(wire
 		(pts
-			(xy 229.87 53.34) (xy 234.95 53.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1fd46504-d371-4403-85d3-f3662e35b058")
-	)
-	(wire
-		(pts
 			(xy 254 64.77) (xy 254 67.31)
 		)
 		(stroke
@@ -3832,7 +3810,7 @@
 	)
 	(wire
 		(pts
-			(xy 200.66 72.39) (xy 200.66 73.66)
+			(xy 205.74 72.39) (xy 205.74 73.66)
 		)
 		(stroke
 			(width 0)
@@ -3932,6 +3910,16 @@
 	)
 	(wire
 		(pts
+			(xy 234.95 53.34) (xy 240.03 53.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "48bec7a9-cd32-415b-be0b-c12f982aa7c4")
+	)
+	(wire
+		(pts
 			(xy 236.22 106.68) (xy 256.54 106.68)
 		)
 		(stroke
@@ -4022,7 +4010,7 @@
 	)
 	(wire
 		(pts
-			(xy 210.82 53.34) (xy 219.71 53.34)
+			(xy 215.9 53.34) (xy 224.79 53.34)
 		)
 		(stroke
 			(width 0)
@@ -4092,7 +4080,7 @@
 	)
 	(wire
 		(pts
-			(xy 200.66 66.04) (xy 210.82 66.04)
+			(xy 205.74 66.04) (xy 215.9 66.04)
 		)
 		(stroke
 			(width 0)
@@ -4252,6 +4240,16 @@
 	)
 	(wire
 		(pts
+			(xy 240.03 53.34) (xy 240.03 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ad459404-7a91-48bf-929d-428b81e47047")
+	)
+	(wire
+		(pts
 			(xy 203.2 115.57) (xy 198.12 115.57)
 		)
 		(stroke
@@ -4312,7 +4310,7 @@
 	)
 	(wire
 		(pts
-			(xy 200.66 73.66) (xy 210.82 73.66)
+			(xy 205.74 73.66) (xy 212.09 73.66)
 		)
 		(stroke
 			(width 0)
@@ -4369,6 +4367,16 @@
 			(type default)
 		)
 		(uuid "d378311c-b9e3-43a2-bc07-ae16cc56124d")
+	)
+	(wire
+		(pts
+			(xy 212.09 68.58) (xy 215.9 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d4e7d600-e9a2-4780-b80f-5c4742093054")
 	)
 	(wire
 		(pts
@@ -4472,7 +4480,7 @@
 	)
 	(wire
 		(pts
-			(xy 210.82 68.58) (xy 210.82 73.66)
+			(xy 212.09 68.58) (xy 212.09 73.66)
 		)
 		(stroke
 			(width 0)
@@ -4512,7 +4520,7 @@
 	)
 	(wire
 		(pts
-			(xy 200.66 73.66) (xy 200.66 76.2)
+			(xy 205.74 73.66) (xy 205.74 76.2)
 		)
 		(stroke
 			(width 0)
@@ -4522,7 +4530,7 @@
 	)
 	(wire
 		(pts
-			(xy 200.66 67.31) (xy 200.66 66.04)
+			(xy 205.74 67.31) (xy 205.74 66.04)
 		)
 		(stroke
 			(width 0)
@@ -4562,7 +4570,7 @@
 	)
 	(wire
 		(pts
-			(xy 200.66 63.5) (xy 200.66 66.04)
+			(xy 205.74 63.5) (xy 205.74 66.04)
 		)
 		(stroke
 			(width 0)
@@ -4599,6 +4607,16 @@
 			(type default)
 		)
 		(uuid "fd2091ab-c0e2-4d3d-821a-769990c85192")
+	)
+	(wire
+		(pts
+			(xy 248.92 69.85) (xy 238.76 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fd89320e-11f6-4743-a0b4-c9afbc40e808")
 	)
 	(wire
 		(pts
@@ -4641,7 +4659,7 @@
 		(uuid "33d4abd1-9bbc-4568-86a2-354f4c5a253d")
 	)
 	(label "EN Mode"
-		(at 210.82 53.34 0)
+		(at 215.9 53.34 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4661,12 +4679,12 @@
 		(uuid "6531b2bf-0f89-4a8a-a634-f45d11b3e3d9")
 	)
 	(label "EN Mode"
-		(at 238.76 69.85 0)
+		(at 248.92 69.85 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify right bottom)
 		)
 		(uuid "7ef10c0e-8714-49c0-9d7c-8288862f04d5")
 	)
@@ -4730,53 +4748,27 @@
 		)
 		(uuid "ef51b61d-5069-4ccc-a85a-2546ca570b5e")
 	)
-	(global_label "MCU_D_P"
+	(hierarchical_label "MCU_D_P"
 		(shape input)
 		(at 147.32 62.23 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left)
 		)
-		(uuid "11dcf517-00dd-4568-841d-75044b0937ea")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 158.8323 62.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
+		(uuid "375e413a-1ec5-4f4d-8fd5-e91fe38f564b")
 	)
-	(global_label "MCU_D_N"
+	(hierarchical_label "MCU_D_N"
 		(shape input)
 		(at 147.32 72.39 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left)
 		)
-		(uuid "294611a1-5847-4d77-8ca6-b9ef3d158b37")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 158.8928 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
+		(uuid "4b34002c-6cb7-469f-b1d3-fa90c3b6d315")
 	)
 	(symbol
 		(lib_id "power:VBUS")
@@ -5263,7 +5255,7 @@
 	)
 	(symbol
 		(lib_id "symbols:AP2112K-3.3TRG1")
-		(at 208.28 64.77 0)
+		(at 207.01 64.77 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5273,7 +5265,7 @@
 		(dnp no)
 		(uuid "1920bbc7-34ce-47bb-9104-428f910af1da")
 		(property "Reference" "U1"
-			(at 217.17 60.96 0)
+			(at 219.964 60.96 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5283,7 +5275,7 @@
 			)
 		)
 		(property "Value" "AP2112K-3.3TRG1"
-			(at 226.06 73.914 0)
+			(at 228.854 73.914 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5292,8 +5284,8 @@
 				)
 			)
 		)
-		(property "Footprint" "footprints:SOT_RG1_DIO"
-			(at 208.28 64.77 0)
+		(property "Footprint" "SOT_RG1_DIO"
+			(at 207.01 64.77 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5305,7 +5297,7 @@
 			)
 		)
 		(property "Datasheet" "AP2112K-3.3TRG1"
-			(at 208.28 66.04 0)
+			(at 207.01 66.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5317,7 +5309,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 208.28 64.77 0)
+			(at 207.01 64.77 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5382,7 +5374,7 @@
 				)
 			)
 		)
-		(property "Footprint" "footprints:SOT23-6L_STM"
+		(property "Footprint" "SOT23-6L_STM"
 			(at 114.3 62.23 0)
 			(hide yes)
 			(show_name no)
@@ -5446,7 +5438,7 @@
 	)
 	(symbol
 		(lib_id "Switch:SW_SPST")
-		(at 224.79 53.34 0)
+		(at 229.87 53.34 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5456,7 +5448,7 @@
 		(dnp no)
 		(uuid "1ae169c8-b767-4098-b9bf-e670db4a4032")
 		(property "Reference" "SW1"
-			(at 224.79 50.038 0)
+			(at 229.87 50.038 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5466,7 +5458,7 @@
 			)
 		)
 		(property "Value" "Pad"
-			(at 224.79 55.372 0)
+			(at 229.87 55.372 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5476,7 +5468,7 @@
 			)
 		)
 		(property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm"
-			(at 224.79 53.34 0)
+			(at 229.87 53.34 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5487,7 +5479,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 224.79 53.34 0)
+			(at 229.87 53.34 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5498,7 +5490,7 @@
 			)
 		)
 		(property "Description" "Single Pole Single Throw (SPST) switch"
-			(at 224.79 53.34 0)
+			(at 229.87 53.34 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5682,7 +5674,7 @@
 	)
 	(symbol
 		(lib_id "power:VBUS")
-		(at 200.66 63.5 0)
+		(at 205.74 63.5 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5693,7 +5685,7 @@
 		(fields_autoplaced yes)
 		(uuid "30baaed4-f9f2-4e6f-869b-02edcdef732f")
 		(property "Reference" "#PWR012"
-			(at 200.66 67.31 0)
+			(at 205.74 67.31 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5704,7 +5696,7 @@
 			)
 		)
 		(property "Value" "VSYS"
-			(at 200.66 58.42 0)
+			(at 205.74 58.42 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5714,7 +5706,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 200.66 63.5 0)
+			(at 205.74 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5725,7 +5717,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 200.66 63.5 0)
+			(at 205.74 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5736,7 +5728,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"VBUS\""
-			(at 200.66 63.5 0)
+			(at 205.74 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6024,7 +6016,7 @@
 				)
 			)
 		)
-		(property "Footprint" "footprints:GCT_USB4520-03-0-A_REVA"
+		(property "Footprint" "USB4520-03-0-A_REVA:GCT_USB4520-03-0-A_REVA"
 			(at 59.69 62.23 0)
 			(hide yes)
 			(show_name no)
@@ -7013,7 +7005,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 200.66 76.2 0)
+		(at 205.74 76.2 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7024,7 +7016,7 @@
 		(fields_autoplaced yes)
 		(uuid "95813f1b-3598-40bc-bf1f-8d1b1129b3e3")
 		(property "Reference" "#PWR013"
-			(at 200.66 82.55 0)
+			(at 205.74 82.55 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7035,7 +7027,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 200.66 81.28 0)
+			(at 205.74 81.28 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7045,7 +7037,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 200.66 76.2 0)
+			(at 205.74 76.2 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7056,7 +7048,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 200.66 76.2 0)
+			(at 205.74 76.2 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7067,7 +7059,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 200.66 76.2 0)
+			(at 205.74 76.2 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7563,7 +7555,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 200.66 69.85 0)
+		(at 205.74 69.85 0)
 		(mirror y)
 		(unit 1)
 		(body_style 1)
@@ -7574,7 +7566,7 @@
 		(dnp no)
 		(uuid "d42175e1-0f77-43c8-b467-e5892474803c")
 		(property "Reference" "C4"
-			(at 198.628 68.58 0)
+			(at 203.708 68.58 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7585,7 +7577,7 @@
 			)
 		)
 		(property "Value" "1uF"
-			(at 198.628 71.12 0)
+			(at 203.708 71.12 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7596,7 +7588,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 200.66 69.85 0)
+			(at 205.74 69.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7607,7 +7599,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 200.66 69.85 0)
+			(at 205.74 69.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7618,7 +7610,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 200.66 69.85 0)
+			(at 205.74 69.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7987,7 +7979,7 @@
 				)
 			)
 		)
-		(property "Footprint" "footprints:SOT95P270X145-5N"
+		(property "Footprint" "SOT95P270X145-5N"
 			(at 212.09 196.52 0)
 			(hide yes)
 			(show_name no)
@@ -8432,7 +8424,7 @@
 	)
 	(symbol
 		(lib_id "power:VBUS")
-		(at 234.95 53.34 0)
+		(at 240.03 52.07 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8443,7 +8435,7 @@
 		(fields_autoplaced yes)
 		(uuid "f568accd-5505-4970-b07e-a83959c3cb9b")
 		(property "Reference" "#PWR020"
-			(at 234.95 57.15 0)
+			(at 240.03 55.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8454,7 +8446,7 @@
 			)
 		)
 		(property "Value" "VSYS"
-			(at 234.95 48.26 0)
+			(at 240.03 46.99 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8464,7 +8456,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 234.95 53.34 0)
+			(at 240.03 52.07 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8475,7 +8467,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 234.95 53.34 0)
+			(at 240.03 52.07 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8486,7 +8478,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"VBUS\""
-			(at 234.95 53.34 0)
+			(at 240.03 52.07 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
