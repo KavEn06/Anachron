@@ -52,8 +52,8 @@
         "zones": {
           "border_display_style": 2,
           "border_hatch_pitch": 0.5,
-          "corner_radius": 0.0,
-          "corner_smoothing": 0,
+          "corner_radius": 0.2,
+          "corner_smoothing": 2,
           "fill_mode": 0,
           "hatch_gap": 1.5,
           "hatch_orientation": 0.0,
@@ -62,8 +62,8 @@
           "hatch_thickness": 1.0,
           "min_clearance": 0.0,
           "min_island_area": 10.0,
-          "min_thickness": 0.25,
-          "pad_connection": 1,
+          "min_thickness": 0.05,
+          "pad_connection": 2,
           "remove_islands": 0,
           "thermal_relief_gap": 0.5,
           "thermal_relief_spoke_width": 0.5
@@ -683,16 +683,16 @@
       "Anachron"
     ],
     [
-      "dcfe3f28-6e13-4570-a0fb-366e159363ae",
-      "Power"
-    ],
-    [
       "7cd6ee79-c0b8-43bd-bc0e-9cb53a026857",
       "MCU + Screen"
     ],
     [
       "b0f66910-b91e-42a0-b088-9df41a9888a7",
       "Peripherals"
+    ],
+    [
+      "dcfe3f28-6e13-4570-a0fb-366e159363ae",
+      "Power"
     ]
   ],
   "text_variables": {},
