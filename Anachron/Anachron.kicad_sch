@@ -7,7 +7,7 @@
 	(lib_symbols)
 	(wire
 		(pts
-			(xy 63.5 63.5) (xy 73.66 63.5)
+			(xy 121.92 88.9) (xy 132.08 88.9)
 		)
 		(stroke
 			(width 0)
@@ -17,7 +17,7 @@
 	)
 	(wire
 		(pts
-			(xy 102.87 59.69) (xy 113.03 59.69)
+			(xy 161.29 85.09) (xy 171.45 85.09)
 		)
 		(stroke
 			(width 0)
@@ -27,7 +27,7 @@
 	)
 	(wire
 		(pts
-			(xy 63.5 59.69) (xy 73.66 59.69)
+			(xy 121.92 85.09) (xy 132.08 85.09)
 		)
 		(stroke
 			(width 0)
@@ -37,7 +37,7 @@
 	)
 	(wire
 		(pts
-			(xy 102.87 67.31) (xy 113.03 67.31)
+			(xy 161.29 92.71) (xy 171.45 92.71)
 		)
 		(stroke
 			(width 0)
@@ -47,7 +47,7 @@
 	)
 	(wire
 		(pts
-			(xy 102.87 69.85) (xy 113.03 69.85)
+			(xy 161.29 95.25) (xy 171.45 95.25)
 		)
 		(stroke
 			(width 0)
@@ -57,7 +57,7 @@
 	)
 	(wire
 		(pts
-			(xy 102.87 49.53) (xy 113.03 49.53)
+			(xy 161.29 74.93) (xy 171.45 74.93)
 		)
 		(stroke
 			(width 0)
@@ -67,7 +67,7 @@
 	)
 	(wire
 		(pts
-			(xy 102.87 72.39) (xy 113.03 72.39)
+			(xy 161.29 97.79) (xy 171.45 97.79)
 		)
 		(stroke
 			(width 0)
@@ -77,7 +77,7 @@
 	)
 	(wire
 		(pts
-			(xy 102.87 64.77) (xy 113.03 64.77)
+			(xy 161.29 90.17) (xy 171.45 90.17)
 		)
 		(stroke
 			(width 0)
@@ -87,7 +87,7 @@
 	)
 	(wire
 		(pts
-			(xy 102.87 57.15) (xy 113.03 57.15)
+			(xy 161.29 82.55) (xy 171.45 82.55)
 		)
 		(stroke
 			(width 0)
@@ -97,7 +97,7 @@
 	)
 	(wire
 		(pts
-			(xy 102.87 54.61) (xy 113.03 54.61)
+			(xy 161.29 80.01) (xy 171.45 80.01)
 		)
 		(stroke
 			(width 0)
@@ -107,7 +107,7 @@
 	)
 	(wire
 		(pts
-			(xy 102.87 52.07) (xy 113.03 52.07)
+			(xy 161.29 77.47) (xy 171.45 77.47)
 		)
 		(stroke
 			(width 0)
@@ -117,7 +117,7 @@
 	)
 	(wire
 		(pts
-			(xy 102.87 74.93) (xy 113.03 74.93)
+			(xy 161.29 100.33) (xy 171.45 100.33)
 		)
 		(stroke
 			(width 0)
@@ -127,7 +127,7 @@
 	)
 	(wire
 		(pts
-			(xy 102.87 62.23) (xy 113.03 62.23)
+			(xy 161.29 87.63) (xy 171.45 87.63)
 		)
 		(stroke
 			(width 0)
@@ -136,7 +136,7 @@
 		(uuid "ff00a87c-5657-4d5a-8d18-25cfc9af58be")
 	)
 	(sheet
-		(at 73.66 46.99)
+		(at 132.08 72.39)
 		(size 29.21 30.48)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -151,7 +151,7 @@
 		)
 		(uuid "7cd6ee79-c0b8-43bd-bc0e-9cb53a026857")
 		(property "Sheetname" "MCU + Screen"
-			(at 73.66 46.2784 0)
+			(at 132.08 71.6784 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -162,7 +162,7 @@
 			)
 		)
 		(property "Sheetfile" "MCUScreen.kicad_sch"
-			(at 73.533 78.232 0)
+			(at 131.953 103.632 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -173,7 +173,7 @@
 			)
 		)
 		(pin "MCU_D_N" input
-			(at 73.66 59.69 180)
+			(at 132.08 85.09 180)
 			(uuid "11ad21ff-7059-4afe-88f0-0e03c3f25fd9")
 			(effects
 				(font
@@ -183,7 +183,7 @@
 			)
 		)
 		(pin "MCU_D_P" input
-			(at 73.66 63.5 180)
+			(at 132.08 88.9 180)
 			(uuid "66298266-8f3f-40b1-aa01-0098a1202918")
 			(effects
 				(font
@@ -193,7 +193,7 @@
 			)
 		)
 		(pin "ADC_Button" input
-			(at 102.87 49.53 0)
+			(at 161.29 74.93 0)
 			(uuid "fe870cae-41e2-443d-90cc-be2b41846d41")
 			(effects
 				(font
@@ -203,7 +203,7 @@
 			)
 		)
 		(pin "AMP_BCLK" input
-			(at 102.87 52.07 0)
+			(at 161.29 77.47 0)
 			(uuid "00c9bf43-4944-49ad-96a4-77e6d84efc07")
 			(effects
 				(font
@@ -213,7 +213,7 @@
 			)
 		)
 		(pin "AMP_DIN" input
-			(at 102.87 54.61 0)
+			(at 161.29 80.01 0)
 			(uuid "0e3136f8-c3c0-4641-9f02-1cf2325b4df1")
 			(effects
 				(font
@@ -223,7 +223,7 @@
 			)
 		)
 		(pin "AMP_LRCLK" input
-			(at 102.87 57.15 0)
+			(at 161.29 82.55 0)
 			(uuid "a3249c16-50d4-43cb-a70c-d2d194fa44a3")
 			(effects
 				(font
@@ -233,7 +233,7 @@
 			)
 		)
 		(pin "AMP_Mode" input
-			(at 102.87 59.69 0)
+			(at 161.29 85.09 0)
 			(uuid "84040f76-d387-4776-8c5d-7bddab81d166")
 			(effects
 				(font
@@ -243,7 +243,7 @@
 			)
 		)
 		(pin "EN_A" input
-			(at 102.87 62.23 0)
+			(at 161.29 87.63 0)
 			(uuid "fbe5a8c2-c4de-40fe-952f-af0c018f3e3a")
 			(effects
 				(font
@@ -253,7 +253,7 @@
 			)
 		)
 		(pin "EN_B" input
-			(at 102.87 64.77 0)
+			(at 161.29 90.17 0)
 			(uuid "131007dd-31ed-4d97-938f-2630c13fbec1")
 			(effects
 				(font
@@ -263,7 +263,7 @@
 			)
 		)
 		(pin "IMU_INT1" input
-			(at 102.87 67.31 0)
+			(at 161.29 92.71 0)
 			(uuid "6ac7896a-c976-43fd-8408-bad62cd38275")
 			(effects
 				(font
@@ -273,7 +273,7 @@
 			)
 		)
 		(pin "IMU_INT2" input
-			(at 102.87 69.85 0)
+			(at 161.29 95.25 0)
 			(uuid "8280d0e4-f2b8-4955-83a9-3956eec0a234")
 			(effects
 				(font
@@ -283,7 +283,7 @@
 			)
 		)
 		(pin "SCL" input
-			(at 102.87 72.39 0)
+			(at 161.29 97.79 0)
 			(uuid "6936e6aa-249b-43ca-865c-f24195770fee")
 			(effects
 				(font
@@ -293,7 +293,7 @@
 			)
 		)
 		(pin "SDA" input
-			(at 102.87 74.93 0)
+			(at 161.29 100.33 0)
 			(uuid "af03be65-461b-4f11-8d7e-fcc2099f5a1e")
 			(effects
 				(font
@@ -311,7 +311,7 @@
 		)
 	)
 	(sheet
-		(at 113.03 46.99)
+		(at 171.45 72.39)
 		(size 17.78 30.48)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -326,7 +326,7 @@
 		)
 		(uuid "b0f66910-b91e-42a0-b088-9df41a9888a7")
 		(property "Sheetname" "Peripherals"
-			(at 113.03 46.2784 0)
+			(at 171.45 71.6784 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -337,7 +337,7 @@
 			)
 		)
 		(property "Sheetfile" "Peripherals.kicad_sch"
-			(at 113.03 77.978 0)
+			(at 171.45 103.378 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -348,7 +348,7 @@
 			)
 		)
 		(pin "ADC_Button" input
-			(at 113.03 49.53 180)
+			(at 171.45 74.93 180)
 			(uuid "860e18cf-21e3-4d7d-866f-6665dbcce4ca")
 			(effects
 				(font
@@ -358,7 +358,7 @@
 			)
 		)
 		(pin "AMP_BCLK" input
-			(at 113.03 52.07 180)
+			(at 171.45 77.47 180)
 			(uuid "7d664ec6-3d6c-4a85-b95f-2e07d9ece424")
 			(effects
 				(font
@@ -368,7 +368,7 @@
 			)
 		)
 		(pin "AMP_DIN" input
-			(at 113.03 54.61 180)
+			(at 171.45 80.01 180)
 			(uuid "07d16e2c-e5a7-43ea-ad08-614c58bc12b6")
 			(effects
 				(font
@@ -378,7 +378,7 @@
 			)
 		)
 		(pin "AMP_LRCLK" input
-			(at 113.03 57.15 180)
+			(at 171.45 82.55 180)
 			(uuid "6d022a06-ab72-4b64-9b64-41d8ea1e233e")
 			(effects
 				(font
@@ -388,7 +388,7 @@
 			)
 		)
 		(pin "AMP_Mode" input
-			(at 113.03 59.69 180)
+			(at 171.45 85.09 180)
 			(uuid "1f268c2d-e90e-4d2e-b66c-54f7378b66d5")
 			(effects
 				(font
@@ -398,7 +398,7 @@
 			)
 		)
 		(pin "EN_A" input
-			(at 113.03 62.23 180)
+			(at 171.45 87.63 180)
 			(uuid "3d862d90-ace9-48c2-841f-3fcac36e3c24")
 			(effects
 				(font
@@ -408,7 +408,7 @@
 			)
 		)
 		(pin "EN_B" input
-			(at 113.03 64.77 180)
+			(at 171.45 90.17 180)
 			(uuid "6d039763-2a87-42ba-b935-50442ca68cfb")
 			(effects
 				(font
@@ -418,7 +418,7 @@
 			)
 		)
 		(pin "IMU_INT1" input
-			(at 113.03 67.31 180)
+			(at 171.45 92.71 180)
 			(uuid "d67788b7-20e5-4aee-9feb-23c3c3e3b80c")
 			(effects
 				(font
@@ -428,7 +428,7 @@
 			)
 		)
 		(pin "IMU_INT2" input
-			(at 113.03 69.85 180)
+			(at 171.45 95.25 180)
 			(uuid "dc81e6c4-0798-4530-9f0b-f8fdba110178")
 			(effects
 				(font
@@ -438,7 +438,7 @@
 			)
 		)
 		(pin "SCL" input
-			(at 113.03 72.39 180)
+			(at 171.45 97.79 180)
 			(uuid "1b2e730f-c4b0-43ee-9499-3ea48a069b77")
 			(effects
 				(font
@@ -448,7 +448,7 @@
 			)
 		)
 		(pin "SDA" input
-			(at 113.03 74.93 180)
+			(at 171.45 100.33 180)
 			(uuid "7efc1238-f0c5-47ef-a660-08cf1a443729")
 			(effects
 				(font
@@ -466,7 +466,7 @@
 		)
 	)
 	(sheet
-		(at 49.53 55.245)
+		(at 107.95 80.645)
 		(size 13.97 12.065)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -482,7 +482,7 @@
 		)
 		(uuid "dcfe3f28-6e13-4570-a0fb-366e159363ae")
 		(property "Sheetname" "Power"
-			(at 49.53 54.5334 0)
+			(at 107.95 79.9334 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -493,7 +493,7 @@
 			)
 		)
 		(property "Sheetfile" "power.kicad_sch"
-			(at 49.53 67.8946 0)
+			(at 107.95 93.2946 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -504,7 +504,7 @@
 			)
 		)
 		(pin "MCU_D_N" input
-			(at 63.5 59.69 0)
+			(at 121.92 85.09 0)
 			(uuid "43c1da29-2f84-45c6-954f-5b5b90a8d1f1")
 			(effects
 				(font
@@ -514,7 +514,7 @@
 			)
 		)
 		(pin "MCU_D_P" input
-			(at 63.5 63.5 0)
+			(at 121.92 88.9 0)
 			(uuid "98ee3d0a-6cca-4c65-ad90-93a7f945822f")
 			(effects
 				(font

@@ -113,7 +113,6 @@
 		)
 		(capping no)
 		(filling no)
-		(zone_defaults)
 		(pcbplotparams
 			(layerselection 0x00000000_00000000_55555555_5755f5ff)
 			(plot_on_all_layers_selection 0x00000000_00000000_00000000_00000000)
@@ -5284,7 +5283,7 @@
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "unconnected-(U3-IO3-Pad15)")
 			(pinfunction "IO3_15")
-			(pintype "bidirectional")
+			(pintype "bidirectional+no_connect")
 			(uuid "ff1a3f50-3a81-4cf2-bc96-18f4abd4e25a")
 		)
 		(pad "16" smd rect
@@ -5293,7 +5292,7 @@
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "unconnected-(U3-IO46-Pad16)")
 			(pinfunction "IO46_16")
-			(pintype "bidirectional")
+			(pintype "bidirectional+no_connect")
 			(uuid "032e37fc-114a-42fc-afa8-3dfe6b195e9e")
 		)
 		(pad "17" smd rect
@@ -5383,7 +5382,7 @@
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "unconnected-(U3-IO45-Pad26)")
 			(pinfunction "IO45_26")
-			(pintype "bidirectional")
+			(pintype "bidirectional+no_connect")
 			(uuid "a50e23ed-2c03-4e50-879a-3fdb5371c33a")
 		)
 		(pad "27" smd rect
@@ -17474,7 +17473,7 @@
 		(end 128.644273 109.675649)
 		(stroke
 			(width 0.1)
-			(type default)
+			(type solid)
 		)
 		(fill no)
 		(layer "Edge.Cuts")
@@ -17932,7 +17931,7 @@
 		(end 160.241131 109.675649)
 		(stroke
 			(width 0.1)
-			(type default)
+			(type solid)
 		)
 		(fill no)
 		(layer "Edge.Cuts")
