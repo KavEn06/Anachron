@@ -6,8 +6,9 @@
 
 The 3d, layers and sch groups are generated from the KiCad project, which is
 only ever read. The fusion group takes the Fusion 360 renders saved in
-docs/fusion/ and puts them on the same dark cards. Everything is written to
-docs/.
+docs/fusion/ and puts them on the same dark cards; it also builds the gif of
+mockup watch faces on the assembled render from the pictures in docs/faces/.
+Everything is written to docs/.
 
 Requirements: KiCad 9+ (kicad-cli), Pillow, NumPy, SciPy, and macOS (SVGs are
 rasterised with Quick Look's `qlmanage`, and the watch face uses a system font).
@@ -36,12 +37,15 @@ BG = "#0d1117"  # card background (edge of the gradient)
 BG_GLOW = "#232c3b"  # card background (centre of the gradient)
 
 # name -> (kicad-cli render args, output canvas size)
+# name -> (kicad-cli render args, card width). The card height follows the
+# board, so every card has the same narrow margin all the way round.
 VIEWS_3D = {
-    "hero": (["--side", "top", "--perspective", "--rotate", "-52,0,24"], (2000, 1180)),
-    "board-top": (["--side", "top"], (1400, 1400)),
-    "board-bottom": (["--side", "bottom"], (1400, 1400)),
-    "board-angle-back": (["--side", "bottom", "--perspective", "--rotate", "-52,0,-24"], (1400, 1400)),
+    "hero": (["--side", "top", "--perspective", "--rotate", "-52,0,24"], 2000),
+    "board-top": (["--side", "top"], 1400),
+    "board-bottom": (["--side", "bottom"], 1400),
+    "board-angle-back": (["--side", "bottom", "--perspective", "--rotate", "-52,0,-24"], 2000),
 }
+MARGIN_3D = 0.04  # margin around the board, as a fraction of the card width
 
 # name -> layers plotted (Edge.Cuts is always added)
 VIEWS_LAYERS = {
@@ -110,7 +114,7 @@ def backdrop(size):
 
 def render_3d(tmp):
     print("3D renders")
-    for name, (args, canvas) in VIEWS_3D.items():
+    for name, (args, w) in VIEWS_3D.items():
         raw = tmp / (name + ".png")
         # Rendered large and scaled down afterwards for clean edges.
         run([KICAD, "pcb", "render", "-o", raw, "-w", 3600, "-h", 3600, "--quality", "basic",
@@ -118,15 +122,17 @@ def render_3d(tmp):
         board = Image.open(raw).convert("RGBA")
         board = board.crop(board.getbbox())
 
-        w, h = canvas
-        scale = min(w * 0.86 / board.width, h * 0.86 / board.height)
-        board = board.resize((int(board.width * scale), int(board.height * scale)), Image.LANCZOS)
-        x, y = (w - board.width) // 2, (h - board.height) // 2
+        margin = round(w * MARGIN_3D)
+        scale = (w - 2 * margin) / board.width
+        board = board.resize((w - 2 * margin, round(board.height * scale)), Image.LANCZOS)
+        h = board.height + 2 * margin
+        canvas = (w, h)
+        x = y = margin
 
         card = backdrop(canvas).convert("RGBA")
         shadow = Image.new("RGBA", canvas, (0, 0, 0, 0))
-        shadow.paste((0, 0, 0, 150), (x, y + int(h * 0.018)), board.getchannel("A"))
-        card.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(h * 0.02)))
+        shadow.paste((0, 0, 0, 150), (x, y + round(margin * 0.25)), board.getchannel("A"))
+        card.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(margin * 0.3)))
         card.alpha_composite(board, (x, y))
         save(round_corners(card, 36), name)
 
@@ -296,9 +302,11 @@ def render_schematics(tmp):
 # --------------------------------------------------------------------------
 
 FUSION = DOCS / "fusion"
+FACES = DOCS / "faces"  # pictures used on the mockup watch faces
 FACE_IMAGE = "anachron-assembled"  # the render whose blank display gets a watch face
 BRASS = (201, 164, 92)
 ACCENT = (86, 156, 240)
+RECORD_ANGLE = 35  # how far the record is turned on the now-playing face, in degrees
 
 
 def fusion_background(a):
@@ -398,81 +406,71 @@ def draw_clock_face(size):
     return face.resize((size, size), Image.LANCZOS)
 
 
+def _vinyl_disc(diameter):
+    """The record cut out of docs/faces/vinyl.png as a round RGBA image."""
+    src = Image.open(FACES / "vinyl.png").convert("RGB")
+    a = np.asarray(src).astype(int)
+    backdrop_colour = np.median(np.concatenate([a[0], a[-1], a[:, 0], a[:, -1]]), 0)
+    # Far from the backdrop colour = the record itself (its soft shadow is closer).
+    solid = ndi.binary_fill_holes(np.abs(a - backdrop_colour).sum(2) > 200)
+    labels, _ = ndi.label(solid)
+    ys, xs = np.nonzero(labels == np.argmax(np.bincount(labels.ravel())[1:]) + 1)
+    cx, cy = (xs.min() + xs.max()) / 2, (ys.min() + ys.max()) / 2
+    r = min(xs.max() - xs.min(), ys.max() - ys.min()) / 2 - 3  # stay inside the edge
+    disc = src.crop((round(cx - r), round(cy - r), round(cx + r), round(cy + r)))
+    disc = disc.resize((diameter, diameter), Image.LANCZOS).convert("RGBA")
+    mask = Image.new("L", (diameter * 2, diameter * 2), 0)
+    ImageDraw.Draw(mask).ellipse([0, 0, diameter * 2 - 1, diameter * 2 - 1], fill=255)
+    disc.putalpha(mask.resize((diameter, diameter), Image.LANCZOS))
+    return disc
+
+
+_DISC = {}
+
+
 def draw_spotify_face(size, angle=0):
-    """A CD / vinyl face with a rotating album disc."""
+    """A now-playing face: the record from docs/faces/vinyl.png, turned by `angle`."""
     s = size * 2
     face = Image.new("RGB", (s, s), (8, 10, 14))
     draw = ImageDraw.Draw(face)
     c = s / 2
 
-    # Soft ring that stays fixed while the disc spins.
-    draw.ellipse([s * 0.05, s * 0.05, s * 0.95, s * 0.95], outline=(28, 34, 42), width=round(s * 0.012))
+    diameter = round(s * 0.76)
+    if diameter not in _DISC:
+        _DISC[diameter] = _vinyl_disc(diameter)
+    disc = _DISC[diameter].rotate(-angle, resample=Image.BICUBIC)
+    face.paste(disc, (round(c - diameter / 2), round(c - diameter / 2)), disc)
 
-    disc = Image.new("RGBA", (s, s), (0, 0, 0, 0))
-    d = ImageDraw.Draw(disc)
-    # Vinyl plate with concentric grooves.
-    d.ellipse([s * 0.08, s * 0.08, s * 0.92, s * 0.92], fill=(18, 18, 22))
-    for r in range(int(s * 0.18), int(s * 0.44), max(round(s * 0.012), 1)):
-        d.ellipse([c - r, c - r, c + r, c + r], outline=(32, 32, 38), width=max(round(s * 0.002), 1))
-    # Label / album art in the middle.
-    label_r = s * 0.17
-    d.ellipse([c - label_r, c - label_r, c + label_r, c + label_r], fill=(30, 215, 96))
-    # Abstract album art: warm bars across a dark square inside the green label.
-    art = Image.new("RGBA", (s, s), (0, 0, 0, 0))
-    a = ImageDraw.Draw(art)
-    pad = s * 0.055
-    a.rounded_rectangle([c - label_r + pad, c - label_r + pad, c + label_r - pad, c + label_r - pad],
-                        radius=s * 0.02, fill=(18, 22, 28))
-    for i, colour in enumerate([(232, 90, 68), (240, 180, 70), (90, 170, 230), (180, 110, 220)]):
-        y0 = c - label_r + pad + s * 0.02 + i * s * 0.045
-        a.rectangle([c - label_r + pad + s * 0.02, y0, c + label_r - pad - s * 0.02, y0 + s * 0.032], fill=colour)
-    disc = Image.alpha_composite(disc, art)
-    # Spindle hole and a highlight wedge so rotation is visible.
-    d = ImageDraw.Draw(disc)
-    d.pieslice([s * 0.08, s * 0.08, s * 0.92, s * 0.92], -18, 8, fill=(255, 255, 255, 28))
-    d.ellipse([c - s * 0.028, c - s * 0.028, c + s * 0.028, c + s * 0.028], fill=(8, 10, 14))
-    disc = disc.rotate(-angle, resample=Image.BICUBIC, center=(c, c))
-    face.paste(disc, (0, 0), disc)
-
-    title = _face_font(round(s * 0.038))
-    small = _face_font(round(s * 0.03))
-    draw.text((c, s * 0.12), "NOW PLAYING", font=small, fill=(30, 215, 96), anchor="mm")
-    draw.text((c, s * 0.88), "Midnight Tram", font=title, fill=(230, 232, 236), anchor="mm")
+    green = (30, 215, 96)
+    draw.text((c, s * 0.068), "NOW PLAYING", font=_face_font(round(s * 0.03)), fill=green, anchor="mm")
+    # Progress bar under the record.
+    y, x0, x1, w = s * 0.932, s * 0.39, s * 0.61, round(s * 0.008)
+    draw.line([(x0, y), (x1, y)], fill=(60, 66, 76), width=w)
+    draw.line([(x0, y), (x0 + (x1 - x0) * 0.4, y)], fill=green, width=w)
     return face.resize((size, size), Image.LANCZOS)
 
 
+def _pet_sprite(width):
+    """The smiley from docs/faces/pet.png, trimmed to its drawing."""
+    a = np.asarray(Image.open(FACES / "pet.png").convert("RGBA")).copy()
+    # Keep only what is inside the black outline; the pale fringe around it is
+    # left over from the white page the smiley was drawn on.
+    outline = (a[..., :3].max(2) < 120) & (a[..., 3] > 128)
+    inside = ndi.binary_fill_holes(ndi.binary_closing(outline, iterations=2))
+    a[~inside, :3] = 0
+    a[..., 3] = np.uint8(np.clip(ndi.gaussian_filter(inside.astype(float), 0.8), 0, 1) * 255)
+    ys, xs = np.nonzero(inside)
+    src = Image.fromarray(a).crop((xs.min() - 2, ys.min() - 2, xs.max() + 3, ys.max() + 3))
+    return src.resize((width, round(src.height * width / src.width)), Image.LANCZOS)
+
+
 def draw_pet_face(size):
-    """A tiny Tamagotchi-style creature on a simple face."""
+    """A Tamagotchi-style face: just the smiley."""
     s = size * 2
     face = Image.new("RGB", (s, s), (14, 18, 28))
-    draw = ImageDraw.Draw(face)
     c = s / 2
-
-    # Soft vignette ring.
-    draw.ellipse([s * 0.06, s * 0.06, s * 0.94, s * 0.94], outline=(40, 52, 72), width=round(s * 0.01))
-
-    # Creature body.
-    body = [c - s * 0.18, c - s * 0.08, c + s * 0.18, c + s * 0.28]
-    draw.ellipse(body, fill=(255, 196, 110))
-    # Ears.
-    draw.ellipse([c - s * 0.22, c - s * 0.22, c - s * 0.05, c - s * 0.02], fill=(255, 196, 110))
-    draw.ellipse([c + s * 0.05, c - s * 0.22, c + s * 0.22, c - s * 0.02], fill=(255, 196, 110))
-    draw.ellipse([c - s * 0.175, c - s * 0.175, c - s * 0.09, c - s * 0.07], fill=(255, 150, 150))
-    draw.ellipse([c + s * 0.09, c - s * 0.175, c + s * 0.175, c - s * 0.07], fill=(255, 150, 150))
-    # Eyes and blush.
-    draw.ellipse([c - s * 0.1, c + s * 0.02, c - s * 0.04, c + s * 0.1], fill=(28, 24, 36))
-    draw.ellipse([c + s * 0.04, c + s * 0.02, c + s * 0.1, c + s * 0.1], fill=(28, 24, 36))
-    draw.ellipse([c - s * 0.085, c + s * 0.035, c - s * 0.06, c + s * 0.06], fill=(255, 255, 255))
-    draw.ellipse([c + s * 0.055, c + s * 0.035, c + s * 0.08, c + s * 0.06], fill=(255, 255, 255))
-    draw.ellipse([c - s * 0.16, c + s * 0.12, c - s * 0.1, c + s * 0.16], fill=(255, 140, 140, ))
-    draw.ellipse([c + s * 0.1, c + s * 0.12, c + s * 0.16, c + s * 0.16], fill=(255, 140, 140))
-    # Smile.
-    draw.arc([c - s * 0.06, c + s * 0.12, c + s * 0.06, c + s * 0.2], 20, 160, fill=(28, 24, 36), width=round(s * 0.012))
-
-    title = _face_font(round(s * 0.036))
-    small = _face_font(round(s * 0.028))
-    draw.text((c, s * 0.14), "PET", font=small, fill=ACCENT, anchor="mm")
-    draw.text((c, s * 0.86), "hungry · 3h", font=title, fill=(210, 214, 222), anchor="mm")
+    sprite = _pet_sprite(round(s * 0.5))
+    face.paste(sprite, (round(c - sprite.width / 2), round(c - sprite.height / 2)), sprite)
     return face.resize((size, size), Image.LANCZOS)
 
 
@@ -560,7 +558,7 @@ def _blend(a, b, t):
 
 
 def render_hero_faces(blank, coeffs, alpha):
-    """Static clock PNG plus a GIF that cycles clock → Spotify → pet."""
+    """Static clock PNG plus a GIF that fades between the clock, record and pet faces."""
     size = 1600
     width = 900
     height = round(blank.height * width / blank.width)
@@ -577,7 +575,7 @@ def render_hero_faces(blank, coeffs, alpha):
     save(style_fusion(paint_face(blank, draw_clock_face(size), coeffs, alpha), mat), FACE_IMAGE)
 
     pet_f = frame_from(draw_pet_face(size))
-    spin = [frame_from(draw_spotify_face(size, angle)) for angle in range(0, 360, 30)]
+    record_f = frame_from(draw_spotify_face(size, RECORD_ANGLE))
 
     frames, durations = [], []
 
@@ -590,17 +588,36 @@ def render_hero_faces(blank, coeffs, alpha):
             frames.append(_blend(a, b, i / (steps + 1)))
             durations.append(ms)
 
-    hold(clock_f, 1600)
-    crossfade(clock_f, spin[0])
-    for f in spin + spin:  # two turns of the disc
-        hold(f, 90)
-    crossfade(spin[-1], pet_f)
-    hold(pet_f, 1600)
-    crossfade(pet_f, clock_f)
+    # Each face is a still; the gif only fades from one to the next.
+    for shown, following in [(clock_f, record_f), (record_f, pet_f), (pet_f, clock_f)]:
+        hold(shown, 2200)
+        crossfade(shown, following)
 
+    # One palette for every frame, picked from all three faces. A fixed grain
+    # (the same in every frame) hides banding in the dark backdrop without
+    # making the still parts of the picture differ between frames, so only the
+    # screen has to be stored for most of them.
+    sheet = Image.new("RGB", (width * 2, height * 2))
+    for i, sample in enumerate([clock_f, record_f, record_f, pet_f]):
+        sheet.paste(sample, (width * (i % 2), height * (i // 2)))
+    # The small accents (green text, seconds hand) cover too few pixels to win
+    # palette entries on their own, so they are added by hand, with darker
+    # steps for their soft edges.
+    accents = [tuple(round(v * k) for v in colour)
+               for colour in [(30, 215, 96), ACCENT] for k in (1, 0.75, 0.5, 0.3)]
+    base = sheet.quantize(colors=256 - len(accents), method=Image.MEDIANCUT, dither=Image.NONE)
+    palette = Image.new("P", (1, 1))
+    palette.putpalette(base.getpalette()[:(256 - len(accents)) * 3] + [v for c in accents for v in c])
+    grain = np.random.default_rng(0).uniform(-2.5, 2.5, (height, width, 1))
+
+    def to_palette(frame):
+        noisy = np.uint8(np.clip(np.asarray(frame).astype(float) + grain, 0, 255))
+        return Image.fromarray(noisy).quantize(palette=palette, dither=Image.NONE)
+
+    frames = [to_palette(f) for f in frames]
     path = IMAGES / (FACE_IMAGE + ".gif")
     frames[0].save(path, save_all=True, append_images=frames[1:], duration=durations,
-                   loop=0, optimize=True)
+                   loop=0, optimize=False)
     print("  %-28s %4dx%-4d %5d KB" % (path.name, width, height, path.stat().st_size // 1024))
 
 

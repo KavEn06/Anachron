@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/images/anachron-assembled.gif" alt="Assembled Anachron pocket watch cycling between a clock face, a spinning Spotify disc and a pet face" width="850">
+  <img src="docs/images/anachron-assembled.gif" alt="Assembled Anachron pocket watch switching between a clock face, a record and a smiley pet face" width="850">
 </p>
 
 <p align="center">
@@ -94,19 +94,17 @@ flowchart LR
 
 ## The board
 
-<table>
-  <tr>
-    <td width="50%"><img src="docs/images/board-top.png" alt="Top side of the PCB"></td>
-    <td width="50%"><img src="docs/images/board-bottom.png" alt="Bottom side of the PCB"></td>
-  </tr>
-  <tr>
-    <td align="center"><b>Top</b><br>Nearly every component is on this side.</td>
-    <td align="center"><b>Bottom</b><br>Battery connector, test pads and the haptic motor pads.</td>
-  </tr>
-</table>
+<p align="center">
+  <img src="docs/images/board-top.png" alt="Top side of the PCB" width="376">
+  <img src="docs/images/board-bottom.png" alt="Bottom side of the PCB" width="376">
+</p>
 
 <p align="center">
-  <img src="docs/images/board-angle-back.png" alt="Angled view of the back of the PCB" width="560">
+  <b>Top</b> (left): nearly every component is on this side. <b>Bottom</b> (right): battery connector, test pads and the haptic motor pads.
+</p>
+
+<p align="center">
+  <img src="docs/images/board-angle-back.png" alt="Angled view of the back of the PCB" width="760">
 </p>
 
 | | |
@@ -326,12 +324,13 @@ Anachron/
 docs/
   images/                 renders, layer plots and schematic images
   fusion/                 Fusion 360 renders as exported
+  faces/                  pictures used on the mockup watch faces
   sketches/               hand-drawn concept sketch
   Anachron-schematic.pdf  all schematic sheets
 scripts/render_docs.py    regenerates the README images and schematic PDF
 ```
 
-The PCB renders, layer plots and schematic images are generated from the KiCad files. The enclosure images are made from the Fusion 360 renders in `docs/fusion/`: the script puts them on the same dark background and builds the mockup face GIF. To refresh everything, run the following command.
+The PCB renders, layer plots and schematic images are generated from the KiCad files. The enclosure images are made from the Fusion 360 renders in `docs/fusion/`: the script puts them on the same dark background and builds the mockup faces shown at the top of this page, using the pictures in `docs/faces/`. To refresh everything, run the following command.
 
 ```sh
 python3 scripts/render_docs.py
