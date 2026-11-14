@@ -7,18 +7,18 @@
 </p>
 
 <p align="center">
-  <img src="docs/images/hero.png" alt="3D render of the Anachron PCB" width="900">
+  <img src="docs/images/anachron-assembled.png" alt="Assembled Anachron pocket watch with a blue case, brass controls and a mockup analog watch face" width="850">
 </p>
 
 Anachron is a smart pocket watch: an extension of your phone that does what a smartwatch does, but lives in your pocket instead of on your wrist. The idea comes from the same place as people going back to wired headphones.
 
-Everything sits on one round PCB sized to match the display. An ESP32-S3 drives a 412 × 412 round touch screen, a rotary encoder with a push button behind it acts as the crown, a haptic motor gives feedback, and a LiPo cell charges over USB-C. This repository holds the electronics, designed in KiCad 10.
+Everything sits on one round PCB sized to match the display. An ESP32-S3 drives a 412 × 412 round touch screen, a rotary encoder with a push button behind it acts as the crown, a haptic motor gives feedback, and a LiPo cell charges over USB-C. This repository holds the electronics, designed in KiCad 10, and renders of the enclosure, modeled in Fusion 360.
 
 | Part of the project | Status |
 | --- | --- |
 | Schematic | Done |
 | PCB layout | Routed, 0 unconnected nets |
-| Enclosure (Fusion 360) | In progress, not in the repo yet |
+| Enclosure (Fusion 360) | CAD complete |
 | Firmware | Not in this repo yet |
 
 ## Contents
@@ -104,6 +104,10 @@ flowchart LR
 The MCU was sized from the display. Refreshing 412 × 412 pixels at 60 Hz in 24-bit colour over QSPI needs a bus clock of about 61 MHz, which with a divide-by-two and 15 % margin means a core clock of about 140 MHz. The N8R8 variant was chosen for its 8 MB of PSRAM, enough to hold full frame buffers for the graphics library.
 
 ## The board
+
+<p align="center">
+  <img src="docs/images/hero.png" alt="Angled 3D render of the populated Anachron PCB" width="760">
+</p>
 
 <table>
   <tr>
@@ -343,9 +347,30 @@ Parts that connect to the board:
 
 ## Enclosure
 
-The case is being designed in Fusion 360 and is not in the repository yet. Renders and CAD files will be added here once it is finished.
+The enclosure was modeled in Fusion 360 with a satin blue anodized aluminum appearance and matte brass controls. The watch face in the render at the top of this page is a mockup; there is no firmware yet.
 
-The display module sets the proportions: it is 44.77 mm across and already 9.6 mm thick, where a traditional pocket watch is 9 to 15 mm in total. The aim is to keep the whole watch as slim as possible, and under 25 mm.
+<p align="center">
+  <img src="docs/images/anachron-rear.png" alt="Rear three-quarter view showing the blue back shell and brass controls" width="650">
+</p>
+
+<p align="center">
+  <img src="docs/images/anachron-exploded.png" alt="Exploded Anachron assembly showing the display, front housing, PCB, controls, battery, haptic motor and rear housing" width="900">
+</p>
+
+The exploded view shows the display, front housing, populated PCB, battery and rear housing in assembly order. The crown, buttons, and haptic motor are spaced out to show where they fit.
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/images/anachron-interior-front.png" alt="Front interior showing the populated PCB seated behind the display opening"></td>
+    <td width="50%"><img src="docs/images/anachron-interior-rear.png" alt="Rear interior showing the PCB, haptic motor, and USB-C port"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Front interior</b><br>With the display removed from view.</td>
+    <td align="center"><b>Rear interior</b><br>With the back shell and battery hidden.</td>
+  </tr>
+</table>
+
+The display module sets the proportions: it is 44.77 mm across and already 9.6 mm thick, where a traditional pocket watch is 9 to 15 mm in total. The case is built tightly around the display, board and battery to keep the watch as slim as that stack allows.
 
 ## Ideas for later
 
@@ -370,15 +395,18 @@ Anachron/
   Library/                symbols, footprints and 3D models
 docs/
   images/                 renders, layer plots and schematic images
+  fusion/                 Fusion 360 renders as exported
   sketches/               hand-drawn concept sketch
   Anachron-schematic.pdf  all schematic sheets
-scripts/render_docs.py    regenerates docs/images and the schematic PDF
+scripts/render_docs.py    regenerates the README images and schematic PDF
 ```
 
-The renders, layer plots and schematic images in this README are generated from the KiCad files. After changing the board or schematic, refresh them with:
+The PCB renders, layer plots and schematic images are generated from the KiCad files. The enclosure images are made from the Fusion 360 renders in `docs/fusion/`: the script puts them on the same dark background and adds the mockup watch face. To refresh everything, run the following command.
 
 ```sh
 python3 scripts/render_docs.py
 ```
 
-The script needs KiCad's `kicad-cli`, [Pillow](https://pypi.org/project/pillow/) and macOS.
+To refresh only some of the images, name the groups: `3d`, `layers`, `sch` or `fusion`. For example, `python3 scripts/render_docs.py fusion` redoes just the enclosure images after a new export from Fusion 360.
+
+The script needs KiCad's `kicad-cli`, [Pillow](https://pypi.org/project/pillow/), [NumPy](https://numpy.org/), [SciPy](https://scipy.org/) and macOS.

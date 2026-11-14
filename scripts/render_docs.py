@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
-"""Regenerate the README images from the KiCad project.
+"""Regenerate the README images.
 
     python3 scripts/render_docs.py            # everything
-    python3 scripts/render_docs.py 3d layers  # only some groups (3d, layers, sch)
+    python3 scripts/render_docs.py 3d layers  # only some groups (3d, layers, sch, fusion)
 
-Everything is written to docs/. The KiCad project itself is only ever read.
+The 3d, layers and sch groups are generated from the KiCad project, which is
+only ever read. The fusion group takes the Fusion 360 renders saved in
+docs/fusion/ and puts them on the same dark cards. Everything is written to
+docs/.
 
-Requirements: KiCad 9+ (kicad-cli), Pillow, and macOS (SVGs are rasterised
-with Quick Look's `qlmanage`, which ships with the OS).
+Requirements: KiCad 9+ (kicad-cli), Pillow, NumPy, SciPy, and macOS (SVGs are
+rasterised with Quick Look's `qlmanage`, and the watch face uses a system font).
 """
 
+import math
 import re
 import shutil
 import subprocess
@@ -17,7 +21,9 @@ import sys
 import tempfile
 from pathlib import Path
 
-from PIL import Image, ImageChops, ImageDraw, ImageFilter
+import numpy as np
+from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
+from scipy import ndimage as ndi
 
 ROOT = Path(__file__).resolve().parent.parent
 PROJECT = ROOT / "Anachron"
@@ -282,7 +288,188 @@ def render_schematics(tmp):
         save(round_corners(img, 16), name)
 
 
-GROUPS = {"3d": render_3d, "layers": render_layers, "sch": render_schematics}
+# --------------------------------------------------------------------------
+# Fusion 360 renders
+# --------------------------------------------------------------------------
+
+FUSION = DOCS / "fusion"
+FACE_IMAGE = "anachron-assembled"  # the render whose blank display gets a watch face
+BRASS = (201, 164, 92)
+ACCENT = (86, 156, 240)
+
+
+def fusion_background(a):
+    """Mask of Fusion's light grey backdrop, including the soft floor shadows."""
+    a = a.astype(np.int16)
+    chroma = a.max(2) - a.min(2)
+    luma = a.mean(2)
+    edge = np.concatenate([a[:8].reshape(-1, 3), a[-8:].reshape(-1, 3)])
+    ref = float(np.median(edge, 0).mean())
+    neutral = chroma <= 6
+
+    # Plain backdrop reachable from the image border, plus enclosed pockets of
+    # it (seen through rings and holes). The PCB is too dark to be mistaken
+    # for it, which is why the luma floor is so high.
+    core = neutral & (luma >= 190) & (luma <= ref + 4)
+    labels, count = ndi.label(core)
+    index = np.arange(count + 1)
+    keep = np.zeros(count + 1, bool)
+    border = np.concatenate([labels[0], labels[-1], labels[:, 0], labels[:, -1]])
+    keep[np.unique(border)] = True
+    sizes = ndi.sum(np.ones_like(luma), labels, index)
+    means = ndi.mean(luma, labels, index)
+    spread = ndi.standard_deviation(luma, labels, index)
+    keep |= (sizes > 100) & (np.abs(means - ref) < 6) & (spread < 10)
+    keep[0] = False
+    background = keep[labels]
+
+    # Grow into shadows: nearly neutral (they pick up a slight tint from the
+    # case), but darker. Shadows are smooth, so a gradient limit stops the
+    # growth at the sharp outline of neutral parts.
+    smooth = ndi.gaussian_filter(luma, 1.0)
+    gradient = np.hypot(ndi.sobel(smooth, 0), ndi.sobel(smooth, 1)) / 8
+    allowed = (chroma <= 10) & (luma >= 30) & (gradient < 4)
+    labels, count = ndi.label(allowed | background)
+    keep = np.zeros(count + 1, bool)
+    keep[np.unique(labels[background])] = True
+    keep[0] = False
+    background = keep[labels]
+
+    # Specks and islands of shadow cut off by the gradient limit.
+    labels, count = ndi.label(~background)
+    index = np.arange(count + 1)
+    sizes = ndi.sum(np.ones_like(luma), labels, index)
+    grey = ndi.mean(chroma <= 10, labels, index)
+    stray = (sizes < 400) | ((sizes < luma.size * 0.003) & (grey > 0.95))
+    background |= stray[labels] & (labels > 0)
+
+    # Grey fringe along outlines that matches the shadow right next to it.
+    for _ in range(6):
+        weight = ndi.uniform_filter(background.astype(float), 3)
+        nearby = ndi.uniform_filter(np.where(background, luma, 0), 3) / np.maximum(weight, 1e-6)
+        fringe = (weight > 0) & ~background & (chroma <= 12) & (np.abs(luma - nearby) < 12)
+        if not fringe.any():
+            break
+        background |= fringe
+    return background, luma / ref
+
+
+def draw_watch_face(size):
+    """A flat, round analog dial showing 10:09."""
+    s = size * 2  # drawn at double size, then scaled down for smooth edges
+    face = Image.new("RGB", (s, s), (6, 8, 12))
+    draw = ImageDraw.Draw(face)
+    c = s / 2
+
+    def polar(radius, degrees):
+        t = math.radians(degrees - 90)
+        return c + radius * math.cos(t), c + radius * math.sin(t)
+
+    def hand(length, tail, width, degrees, colour):
+        draw.line([polar(-tail, degrees), polar(length, degrees)], fill=colour, width=width)
+
+    for minute in range(60):
+        degrees = minute * 6
+        if minute % 5:
+            draw.line([polar(s * 0.455, degrees), polar(s * 0.475, degrees)], fill=(120, 126, 138), width=round(s * 0.004))
+        else:
+            width = round(s * (0.02 if minute == 0 else 0.012))
+            draw.line([polar(s * 0.39, degrees), polar(s * 0.475, degrees)], fill=BRASS, width=width)
+
+    title = ImageFont.truetype("/System/Library/Fonts/Avenir Next.ttc", round(s * 0.042), index=0)
+    small = ImageFont.truetype("/System/Library/Fonts/Avenir Next.ttc", round(s * 0.034), index=0)
+    draw.text((c, s * 0.27), "A N A C H R O N", font=title, fill=(214, 216, 222), anchor="mm")
+    draw.rounded_rectangle([s * 0.66, c - s * 0.032, s * 0.8, c + s * 0.032], radius=s * 0.008,
+                           outline=(90, 96, 108), width=round(s * 0.003))
+    draw.text((s * 0.73, c), "SAT 14", font=small, fill=(214, 216, 222), anchor="mm")
+
+    hand(s * 0.24, s * 0.04, round(s * 0.022), (10 + 9 / 60) * 30, BRASS)
+    hand(s * 0.36, s * 0.05, round(s * 0.014), 9 * 6, BRASS)
+    hand(s * 0.41, s * 0.09, round(s * 0.005), 36 * 6, ACCENT)
+    draw.ellipse([c - s * 0.022, c - s * 0.022, c + s * 0.022, c + s * 0.022], fill=BRASS)
+    draw.ellipse([c - s * 0.008, c - s * 0.008, c + s * 0.008, c + s * 0.008], fill=ACCENT)
+    return face.resize((size, size), Image.LANCZOS)
+
+
+def add_watch_face(img):
+    """Map a dial onto the dark elliptical display seen in the front render."""
+    a = np.asarray(img).astype(np.int16)
+    dark = (a.max(2) < 40) & (a.max(2) - a.min(2) < 12)
+    labels, count = ndi.label(dark)
+    screen = ndi.binary_fill_holes(labels == np.argmax(np.bincount(labels.ravel())[1:]) + 1)
+
+    ys, xs = np.nonzero(screen)
+    centre = np.array([xs.mean(), ys.mean()])
+    cov = np.cov(np.stack([xs - centre[0], ys - centre[1]]))
+    values, vectors = np.linalg.eigh(cov)
+    # A filled ellipse with semi-axes r has variance r^2 / 4 along each axis.
+    to_screen = vectors @ np.diag(2 * np.sqrt(values)) @ vectors.T
+
+    # Turn the dial so that 12 o'clock points at the crown: the brightest
+    # brass-coloured pixels above the screen.
+    brass = (a[..., 0] > 150) & (a[..., 0] - a[..., 2] > 50) & (np.arange(a.shape[0])[:, None] < ys.min())
+    by, bx = np.nonzero(brass)
+    crown = np.array([bx[by < by.min() + 20].mean(), by.min()])
+    want = (crown - centre) / np.linalg.norm(crown - centre)
+    best = min(range(-90, 91), key=lambda d: -np.dot(want, _unit(to_screen @ _rot(d) @ [0, -1])))
+    to_screen = to_screen @ _rot(best)
+
+    size = 1600
+    active = 0.9  # the panel's black border inside the glass
+    to_face = np.linalg.inv(to_screen) * (size / 2 / active)
+    offset = np.array([size / 2, size / 2]) - to_face @ centre
+    coeffs = (to_face[0, 0], to_face[0, 1], offset[0], to_face[1, 0], to_face[1, 1], offset[1])
+
+    face = draw_watch_face(size)
+    disc = Image.new("L", (size, size), 0)
+    ImageDraw.Draw(disc).ellipse([size * (1 - active) / 2] * 2 + [size * (1 + active) / 2] * 2, fill=255)
+    disc = disc.filter(ImageFilter.GaussianBlur(3))
+    warped = face.transform(img.size, Image.AFFINE, coeffs, Image.BICUBIC)
+    alpha = disc.transform(img.size, Image.AFFINE, coeffs, Image.BICUBIC)
+
+    # Screen-blend so the glass keeps its reflections on top of the dial.
+    base = np.asarray(img).astype(float) / 255
+    dial = np.asarray(warped).astype(float) / 255
+    lit = 1 - (1 - base) * (1 - dial)
+    k = (np.asarray(alpha).astype(float) / 255)[..., None]
+    return Image.fromarray(np.uint8(np.round((base * (1 - k) + lit * k) * 255)))
+
+
+def _rot(degrees):
+    t = math.radians(degrees)
+    return np.array([[math.cos(t), -math.sin(t)], [math.sin(t), math.cos(t)]])
+
+
+def _unit(v):
+    return np.asarray(v) / np.linalg.norm(v)
+
+
+def render_fusion(tmp):
+    print("Fusion renders")
+    sources = sorted(FUSION.glob("*.png"))
+    if not sources:
+        sys.exit("no renders found in %s" % FUSION.relative_to(ROOT))
+    for src in sources:
+        img = Image.open(src).convert("RGB")
+        if src.stem == FACE_IMAGE:
+            img = add_watch_face(img)
+        a = np.asarray(img)
+        background, brightness = fusion_background(a)
+
+        obj = ndi.binary_erosion(~background, iterations=1)
+        alpha = ndi.gaussian_filter(obj.astype(float), 0.8)[..., None]
+        # Edge pixels are part grey backdrop; take their colour from further in.
+        solid = ndi.binary_erosion(obj, iterations=2)
+        _, (iy, ix) = ndi.distance_transform_edt(~solid, return_indices=True)
+        colour = a[iy, ix].astype(float)
+        shade = 1 - np.clip(1 - ndi.gaussian_filter(brightness, 2), 0, 1) * 1.6
+        card = np.asarray(backdrop(img.size)).astype(float) * np.clip(shade, 0, 1)[..., None]
+        out = colour * alpha + card * (1 - alpha)
+        out = Image.fromarray(np.uint8(np.clip(np.round(out), 0, 255)))
+        save(round_corners(out, round(min(img.size) * 0.026)), src.stem)
+
+
+GROUPS = {"3d": render_3d, "layers": render_layers, "sch": render_schematics, "fusion": render_fusion}
 
 
 def main():
