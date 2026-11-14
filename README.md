@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/images/anachron-assembled.png" alt="Assembled Anachron pocket watch with a blue case, brass controls and a mockup analog watch face" width="850">
+  <img src="docs/images/anachron-assembled.gif" alt="Assembled Anachron pocket watch cycling between a clock face, a spinning Spotify disc and a pet face" width="850">
 </p>
 
 <p align="center">
@@ -285,7 +285,7 @@ Parts that connect to the board:
 
 ## Enclosure
 
-The enclosure was modeled in Fusion 360 with a satin blue anodized aluminum appearance and matte brass controls. The watch face in the render at the top of this page is a mockup; there is no firmware yet.
+The enclosure was modeled in Fusion 360 with a satin blue anodized aluminum appearance and matte brass controls. The faces in the render at the top of this page are mockups; there is no firmware yet.
 
 <p align="center">
   <img src="docs/images/anachron-rear.png" alt="Rear three-quarter view showing the blue back shell and brass controls" width="650">
@@ -331,7 +331,7 @@ docs/
 scripts/render_docs.py    regenerates the README images and schematic PDF
 ```
 
-The PCB renders, layer plots and schematic images are generated from the KiCad files. The enclosure images are made from the Fusion 360 renders in `docs/fusion/`: the script puts them on the same dark background and adds the mockup watch face. To refresh everything, run the following command.
+The PCB renders, layer plots and schematic images are generated from the KiCad files. The enclosure images are made from the Fusion 360 renders in `docs/fusion/`: the script puts them on the same dark background and builds the mockup face GIF. To refresh everything, run the following command.
 
 ```sh
 python3 scripts/render_docs.py

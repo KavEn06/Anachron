@@ -357,7 +357,11 @@ def fusion_background(a):
     return background, luma / ref
 
 
-def draw_watch_face(size):
+def _face_font(size, index=0):
+    return ImageFont.truetype("/System/Library/Fonts/Avenir Next.ttc", size, index=index)
+
+
+def draw_clock_face(size):
     """A flat, round analog dial showing 10:09."""
     s = size * 2  # drawn at double size, then scaled down for smooth edges
     face = Image.new("RGB", (s, s), (6, 8, 12))
@@ -379,8 +383,8 @@ def draw_watch_face(size):
             width = round(s * (0.02 if minute == 0 else 0.012))
             draw.line([polar(s * 0.39, degrees), polar(s * 0.475, degrees)], fill=BRASS, width=width)
 
-    title = ImageFont.truetype("/System/Library/Fonts/Avenir Next.ttc", round(s * 0.042), index=0)
-    small = ImageFont.truetype("/System/Library/Fonts/Avenir Next.ttc", round(s * 0.034), index=0)
+    title = _face_font(round(s * 0.042))
+    small = _face_font(round(s * 0.034))
     draw.text((c, s * 0.27), "A N A C H R O N", font=title, fill=(214, 216, 222), anchor="mm")
     draw.rounded_rectangle([s * 0.66, c - s * 0.032, s * 0.8, c + s * 0.032], radius=s * 0.008,
                            outline=(90, 96, 108), width=round(s * 0.003))
@@ -394,8 +398,86 @@ def draw_watch_face(size):
     return face.resize((size, size), Image.LANCZOS)
 
 
-def add_watch_face(img):
-    """Map a dial onto the dark elliptical display seen in the front render."""
+def draw_spotify_face(size, angle=0):
+    """A CD / vinyl face with a rotating album disc."""
+    s = size * 2
+    face = Image.new("RGB", (s, s), (8, 10, 14))
+    draw = ImageDraw.Draw(face)
+    c = s / 2
+
+    # Soft ring that stays fixed while the disc spins.
+    draw.ellipse([s * 0.05, s * 0.05, s * 0.95, s * 0.95], outline=(28, 34, 42), width=round(s * 0.012))
+
+    disc = Image.new("RGBA", (s, s), (0, 0, 0, 0))
+    d = ImageDraw.Draw(disc)
+    # Vinyl plate with concentric grooves.
+    d.ellipse([s * 0.08, s * 0.08, s * 0.92, s * 0.92], fill=(18, 18, 22))
+    for r in range(int(s * 0.18), int(s * 0.44), max(round(s * 0.012), 1)):
+        d.ellipse([c - r, c - r, c + r, c + r], outline=(32, 32, 38), width=max(round(s * 0.002), 1))
+    # Label / album art in the middle.
+    label_r = s * 0.17
+    d.ellipse([c - label_r, c - label_r, c + label_r, c + label_r], fill=(30, 215, 96))
+    # Abstract album art: warm bars across a dark square inside the green label.
+    art = Image.new("RGBA", (s, s), (0, 0, 0, 0))
+    a = ImageDraw.Draw(art)
+    pad = s * 0.055
+    a.rounded_rectangle([c - label_r + pad, c - label_r + pad, c + label_r - pad, c + label_r - pad],
+                        radius=s * 0.02, fill=(18, 22, 28))
+    for i, colour in enumerate([(232, 90, 68), (240, 180, 70), (90, 170, 230), (180, 110, 220)]):
+        y0 = c - label_r + pad + s * 0.02 + i * s * 0.045
+        a.rectangle([c - label_r + pad + s * 0.02, y0, c + label_r - pad - s * 0.02, y0 + s * 0.032], fill=colour)
+    disc = Image.alpha_composite(disc, art)
+    # Spindle hole and a highlight wedge so rotation is visible.
+    d = ImageDraw.Draw(disc)
+    d.pieslice([s * 0.08, s * 0.08, s * 0.92, s * 0.92], -18, 8, fill=(255, 255, 255, 28))
+    d.ellipse([c - s * 0.028, c - s * 0.028, c + s * 0.028, c + s * 0.028], fill=(8, 10, 14))
+    disc = disc.rotate(-angle, resample=Image.BICUBIC, center=(c, c))
+    face.paste(disc, (0, 0), disc)
+
+    title = _face_font(round(s * 0.038))
+    small = _face_font(round(s * 0.03))
+    draw.text((c, s * 0.12), "NOW PLAYING", font=small, fill=(30, 215, 96), anchor="mm")
+    draw.text((c, s * 0.88), "Midnight Tram", font=title, fill=(230, 232, 236), anchor="mm")
+    return face.resize((size, size), Image.LANCZOS)
+
+
+def draw_pet_face(size):
+    """A tiny Tamagotchi-style creature on a simple face."""
+    s = size * 2
+    face = Image.new("RGB", (s, s), (14, 18, 28))
+    draw = ImageDraw.Draw(face)
+    c = s / 2
+
+    # Soft vignette ring.
+    draw.ellipse([s * 0.06, s * 0.06, s * 0.94, s * 0.94], outline=(40, 52, 72), width=round(s * 0.01))
+
+    # Creature body.
+    body = [c - s * 0.18, c - s * 0.08, c + s * 0.18, c + s * 0.28]
+    draw.ellipse(body, fill=(255, 196, 110))
+    # Ears.
+    draw.ellipse([c - s * 0.22, c - s * 0.22, c - s * 0.05, c - s * 0.02], fill=(255, 196, 110))
+    draw.ellipse([c + s * 0.05, c - s * 0.22, c + s * 0.22, c - s * 0.02], fill=(255, 196, 110))
+    draw.ellipse([c - s * 0.175, c - s * 0.175, c - s * 0.09, c - s * 0.07], fill=(255, 150, 150))
+    draw.ellipse([c + s * 0.09, c - s * 0.175, c + s * 0.175, c - s * 0.07], fill=(255, 150, 150))
+    # Eyes and blush.
+    draw.ellipse([c - s * 0.1, c + s * 0.02, c - s * 0.04, c + s * 0.1], fill=(28, 24, 36))
+    draw.ellipse([c + s * 0.04, c + s * 0.02, c + s * 0.1, c + s * 0.1], fill=(28, 24, 36))
+    draw.ellipse([c - s * 0.085, c + s * 0.035, c - s * 0.06, c + s * 0.06], fill=(255, 255, 255))
+    draw.ellipse([c + s * 0.055, c + s * 0.035, c + s * 0.08, c + s * 0.06], fill=(255, 255, 255))
+    draw.ellipse([c - s * 0.16, c + s * 0.12, c - s * 0.1, c + s * 0.16], fill=(255, 140, 140, ))
+    draw.ellipse([c + s * 0.1, c + s * 0.12, c + s * 0.16, c + s * 0.16], fill=(255, 140, 140))
+    # Smile.
+    draw.arc([c - s * 0.06, c + s * 0.12, c + s * 0.06, c + s * 0.2], 20, 160, fill=(28, 24, 36), width=round(s * 0.012))
+
+    title = _face_font(round(s * 0.036))
+    small = _face_font(round(s * 0.028))
+    draw.text((c, s * 0.14), "PET", font=small, fill=ACCENT, anchor="mm")
+    draw.text((c, s * 0.86), "hungry · 3h", font=title, fill=(210, 214, 222), anchor="mm")
+    return face.resize((size, size), Image.LANCZOS)
+
+
+def screen_map(img):
+    """Affine that maps a square dial onto the dark elliptical display."""
     a = np.asarray(img).astype(np.int16)
     dark = (a.max(2) < 40) & (a.max(2) - a.min(2) < 12)
     labels, count = ndi.label(dark)
@@ -423,14 +505,16 @@ def add_watch_face(img):
     offset = np.array([size / 2, size / 2]) - to_face @ centre
     coeffs = (to_face[0, 0], to_face[0, 1], offset[0], to_face[1, 0], to_face[1, 1], offset[1])
 
-    face = draw_watch_face(size)
     disc = Image.new("L", (size, size), 0)
     ImageDraw.Draw(disc).ellipse([size * (1 - active) / 2] * 2 + [size * (1 + active) / 2] * 2, fill=255)
     disc = disc.filter(ImageFilter.GaussianBlur(3))
-    warped = face.transform(img.size, Image.AFFINE, coeffs, Image.BICUBIC)
     alpha = disc.transform(img.size, Image.AFFINE, coeffs, Image.BICUBIC)
+    return size, coeffs, alpha
 
-    # Screen-blend so the glass keeps its reflections on top of the dial.
+
+def paint_face(img, face, coeffs, alpha):
+    """Screen-blend a dial onto the glass so reflections stay on top."""
+    warped = face.transform(img.size, Image.AFFINE, coeffs, Image.BICUBIC)
     base = np.asarray(img).astype(float) / 255
     dial = np.asarray(warped).astype(float) / 255
     lit = 1 - (1 - base) * (1 - dial)
@@ -447,29 +531,93 @@ def _unit(v):
     return np.asarray(v) / np.linalg.norm(v)
 
 
+def fusion_mat(img):
+    """Background mask and contact-shadow shading for a Fusion render."""
+    a = np.asarray(img)
+    background, brightness = fusion_background(a)
+    obj = ndi.binary_erosion(~background, iterations=1)
+    alpha = ndi.gaussian_filter(obj.astype(float), 0.8)[..., None]
+    solid = ndi.binary_erosion(obj, iterations=2)
+    _, indices = ndi.distance_transform_edt(~solid, return_indices=True)
+    shade = 1 - np.clip(1 - ndi.gaussian_filter(brightness, 2), 0, 1) * 1.6
+    card = np.asarray(backdrop(img.size)).astype(float) * np.clip(shade, 0, 1)[..., None]
+    return alpha, indices, card
+
+
+def style_fusion(img, mat=None):
+    """Put a Fusion render on the same dark card as the KiCad images."""
+    a = np.asarray(img)
+    alpha, indices, card = mat if mat is not None else fusion_mat(img)
+    iy, ix = indices
+    colour = a[iy, ix].astype(float)
+    out = colour * alpha + card * (1 - alpha)
+    out = Image.fromarray(np.uint8(np.clip(np.round(out), 0, 255)))
+    return round_corners(out, round(min(img.size) * 0.026))
+
+
+def _blend(a, b, t):
+    return Image.fromarray(np.uint8(np.round(np.asarray(a).astype(float) * (1 - t) + np.asarray(b).astype(float) * t)))
+
+
+def render_hero_faces(blank, coeffs, alpha):
+    """Static clock PNG plus a GIF that cycles clock → Spotify → pet."""
+    size = 1600
+    width = 900
+    height = round(blank.height * width / blank.width)
+    # Faces only change the screen, so the backdrop mat from the blank case is fine.
+    mat = fusion_mat(blank)
+
+    def frame_from(face_img):
+        card = style_fusion(paint_face(blank, face_img, coeffs, alpha), mat).convert("RGBA")
+        bg = Image.new("RGBA", card.size, rgb(BG) + (255,))
+        return Image.alpha_composite(bg, card).convert("RGB").resize((width, height), Image.LANCZOS)
+
+    clock_f = frame_from(draw_clock_face(size))
+    # Full-resolution static PNG keeps the same look as the other cards.
+    save(style_fusion(paint_face(blank, draw_clock_face(size), coeffs, alpha), mat), FACE_IMAGE)
+
+    pet_f = frame_from(draw_pet_face(size))
+    spin = [frame_from(draw_spotify_face(size, angle)) for angle in range(0, 360, 30)]
+
+    frames, durations = [], []
+
+    def hold(frame, ms):
+        frames.append(frame)
+        durations.append(ms)
+
+    def crossfade(a, b, steps=5, ms=80):
+        for i in range(1, steps + 1):
+            frames.append(_blend(a, b, i / (steps + 1)))
+            durations.append(ms)
+
+    hold(clock_f, 1600)
+    crossfade(clock_f, spin[0])
+    for f in spin + spin:  # two turns of the disc
+        hold(f, 90)
+    crossfade(spin[-1], pet_f)
+    hold(pet_f, 1600)
+    crossfade(pet_f, clock_f)
+
+    path = IMAGES / (FACE_IMAGE + ".gif")
+    frames[0].save(path, save_all=True, append_images=frames[1:], duration=durations,
+                   loop=0, optimize=True)
+    print("  %-28s %4dx%-4d %5d KB" % (path.name, width, height, path.stat().st_size // 1024))
+
+
 def render_fusion(tmp):
     print("Fusion renders")
     sources = sorted(FUSION.glob("*.png"))
     if not sources:
         sys.exit("no renders found in %s" % FUSION.relative_to(ROOT))
-    for src in sources:
-        img = Image.open(src).convert("RGB")
-        if src.stem == FACE_IMAGE:
-            img = add_watch_face(img)
-        a = np.asarray(img)
-        background, brightness = fusion_background(a)
 
-        obj = ndi.binary_erosion(~background, iterations=1)
-        alpha = ndi.gaussian_filter(obj.astype(float), 0.8)[..., None]
-        # Edge pixels are part grey backdrop; take their colour from further in.
-        solid = ndi.binary_erosion(obj, iterations=2)
-        _, (iy, ix) = ndi.distance_transform_edt(~solid, return_indices=True)
-        colour = a[iy, ix].astype(float)
-        shade = 1 - np.clip(1 - ndi.gaussian_filter(brightness, 2), 0, 1) * 1.6
-        card = np.asarray(backdrop(img.size)).astype(float) * np.clip(shade, 0, 1)[..., None]
-        out = colour * alpha + card * (1 - alpha)
-        out = Image.fromarray(np.uint8(np.clip(np.round(out), 0, 255)))
-        save(round_corners(out, round(min(img.size) * 0.026)), src.stem)
+    blank = Image.open(FUSION / (FACE_IMAGE + ".png")).convert("RGB")
+    _, coeffs, alpha = screen_map(blank)
+    render_hero_faces(blank, coeffs, alpha)
+
+    for src in sources:
+        if src.stem == FACE_IMAGE:
+            continue
+        save(style_fusion(Image.open(src).convert("RGB")), src.stem)
 
 
 GROUPS = {"3d": render_3d, "layers": render_layers, "sch": render_schematics, "fusion": render_fusion}
