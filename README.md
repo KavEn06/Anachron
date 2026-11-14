@@ -10,16 +10,13 @@
   <img src="docs/images/anachron-assembled.png" alt="Assembled Anachron pocket watch with a blue case, brass controls and a mockup analog watch face" width="850">
 </p>
 
+<p align="center">
+  <img src="docs/images/hero.png" alt="Angled 3D render of the populated Anachron PCB" width="760">
+</p>
+
 Anachron is a smart pocket watch: an extension of your phone that does what a smartwatch does, but lives in your pocket instead of on your wrist. The idea comes from the same place as people going back to wired headphones.
 
 Everything sits on one round PCB sized to match the display. An ESP32-S3 drives a 412 × 412 round touch screen, a rotary encoder with a push button behind it acts as the crown, a haptic motor gives feedback, and a LiPo cell charges over USB-C. This repository holds the electronics, designed in KiCad 10, and renders of the enclosure, modeled in Fusion 360.
-
-| Part of the project | Status |
-| --- | --- |
-| Schematic | Done |
-| PCB layout | Routed, 0 unconnected nets |
-| Enclosure (Fusion 360) | CAD complete |
-| Firmware | Not in this repo yet |
 
 ## Contents
 
@@ -30,12 +27,10 @@ Everything sits on one round PCB sized to match the display. An ESP32-S3 drives 
 - [PCB layers](#pcb-layers)
 - [Schematics](#schematics)
 - [Pin map](#pin-map)
-- [Design notes](#design-notes)
 - [Power budget](#power-budget)
 - [Firmware notes](#firmware-notes)
 - [Bill of materials](#bill-of-materials)
 - [Enclosure](#enclosure)
-- [Ideas for later](#ideas-for-later)
 - [Working with the project](#working-with-the-project)
 
 ## Concept
@@ -92,22 +87,12 @@ flowchart LR
 
 ## Why these parts
 
-| Choice | Picked | Instead of | Reason |
-| --- | --- | --- | --- |
-| Display | Waveshare 1.46" round, 412 × 412 | Waveshare 1.85" round (360 × 360) or 1.47" rectangular (172 × 320) | Highest resolution and thinnest bezels of the three, and round suits a pocket watch. 1.46" is about a size 9 movement, so it reads as a normal medium pocket watch. |
-| MCU | ESP32-S3-WROOM-1-N8R8 | STM32U575 with an ESP32-C6 as the radio | One module holds the processor, radio, memory and antenna, which is simpler and far cheaper. It uses more power, but the watch only has to last a day. |
-| IMU | BMI270 | ST LSM6DSOX | Ready-made gesture detection with nothing to train, and cheaper. It draws slightly more, but spends most of its time asleep. |
-| Regulator | LDO | Switching regulator | Less board space and a cleaner rail, and the drop from battery or USB to 3.3 V is small. Sized for ESP32-S3 peaks of about 500 mA. |
-| USB protection | USBLC6-2SC6 | TI ESD122 plus a separate VBUS diode | USB is only used at USB 2.0 speed, and one part covers both the data lines and VBUS. |
-| Encoder | Alps EC05 (5 mm) | Generic 4 mm encoder | The 4 mm part was either very expensive in single units or sold by the thousand, and 5 mm is a more standard shaft size. |
-
-The MCU was sized from the display. Refreshing 412 × 412 pixels at 60 Hz in 24-bit colour over QSPI needs a bus clock of about 61 MHz, which with a divide-by-two and 15 % margin means a core clock of about 140 MHz. The N8R8 variant was chosen for its 8 MB of PSRAM, enough to hold full frame buffers for the graphics library.
+- **Display:** the 1.46" round panel has the highest resolution and thinnest bezels of the options, and is about the size of a medium pocket watch movement.
+- **MCU:** one ESP32-S3 module holds the processor, radio, memory and antenna, which is simpler and cheaper than an STM32 with a separate radio. Its 8 MB of PSRAM holds full frame buffers for the display.
+- **IMU:** the BMI270 has gesture detection built in, with nothing to train.
+- **Regulator:** an LDO, because the drop to 3.3 V is small and it takes less space than a switching regulator.
 
 ## The board
-
-<p align="center">
-  <img src="docs/images/hero.png" alt="Angled 3D render of the populated Anachron PCB" width="760">
-</p>
 
 <table>
   <tr>
@@ -140,8 +125,6 @@ The board is 45 mm across to match the display module, which is 44.77 mm in diam
 
 ## PCB layers
 
-All plots are drawn looking down at the top of the board, so they line up with each other.
-
 <table>
   <tr>
     <td width="50%"><img src="docs/images/layer-1-f-cu.png" alt="Front copper layer"></td>
@@ -161,8 +144,6 @@ All plots are drawn looking down at the top of the board, so they line up with e
   </tr>
 </table>
 
-With the copper pours hidden, the routing on all four layers is visible at once (red is F.Cu, green In1.Cu, orange In2.Cu, blue B.Cu). The second plot shows where each component sits.
-
 <table>
   <tr>
     <td width="50%"><img src="docs/images/routing-all-layers.png" alt="Routing on all four layers with pours hidden"></td>
@@ -174,25 +155,9 @@ With the copper pours hidden, the routing on all four layers is visible at once 
   </tr>
 </table>
 
-### Stackup
-
-| Layer | Material | Thickness |
-| --- | --- | --- |
-| F.Cu | Copper | 0.035 mm |
-| | FR4 prepreg | 0.1 mm |
-| In1.Cu | Copper | 0.035 mm |
-| | FR4 core | 1.24 mm |
-| In2.Cu | Copper | 0.035 mm |
-| | FR4 prepreg | 0.1 mm |
-| B.Cu | Copper | 0.035 mm |
-
 ## Schematics
 
 The schematic is split into three sheets. A PDF of all of them is in [`docs/Anachron-schematic.pdf`](docs/Anachron-schematic.pdf).
-
-<p align="center">
-  <img src="docs/images/sch-overview.png" alt="Top-level schematic sheet" width="640">
-</p>
 
 ### MCU and screen
 
@@ -242,33 +207,6 @@ The schematic is split into three sheets. A PDF of all of them is in [`docs/Anac
 
 IO3, IO45 and IO46 are strapping pins and are left unconnected. IO35 to IO37 are left free because the module's PSRAM uses them. Both analog inputs (IO6 and IO7) are on ADC1, which keeps working while Wi-Fi is on.
 
-## Design notes
-
-**Power path.** With USB plugged in, VBUS holds the gate of the AO3401A high, so the P-FET is off and the system rail (`VSYS`) is fed from VBUS through the SM5817 Schottky while the MCP73831 charges the cell. When USB is removed, a 10 kΩ resistor pulls the gate low, the FET turns on and the battery takes over.
-
-**Charge current.** The MCP73831 is programmed with a 4.7 kΩ resistor: 1000 V / 4.7 kΩ = 212 mA. The LED in the `VBUS` box on the silkscreen is lit while charging.
-
-**Regulator enable.** The AP2112K enable pin goes to the `SYS PWR` solder jumper, which connects it to `VSYS`.
-
-**Battery.** The cell has its own protection circuit, so there is none on the board. A 100 kΩ / 100 kΩ divider puts half the battery voltage on IO7 for a rough battery level. The divider is always connected: switching it with a FET would save a little current, but was not worth the extra parts.
-
-**Buttons.** The three side buttons share IO6. A 4.7 kΩ pull-up to 3.3 V forms a divider with a different resistor for each button:
-
-| Pressed | Resistor to ground | Voltage on IO6 |
-| --- | --- | --- |
-| None | | 3.30 V |
-| Right | 22 kΩ | 2.72 V |
-| Crown | 10 kΩ | 2.24 V |
-| Left | 4.7 kΩ | 1.65 V |
-
-**Crystal.** Load capacitors follow C = 2 × (C<sub>load</sub> − C<sub>stray</sub>) = 2 × (7 pF − 5 pF) = 4 pF.
-
-**Haptics.** The haptic motor is driven like a speaker: the ESP32-S3 sends waveforms over I2S to the MAX98357A, whose output goes to the `MP1` pads on the back of the board. The jumper next to the amplifier sets its gain: 9 dB when open, 6 dB when bridged. The same legend is on the silkscreen.
-
-**Crown.** The EC05 encoder is a hollow-shaft part with no push switch, so the crown button is a separate side-actuated switch mounted behind it, in line with the shaft.
-
-**Debug.** The bottom of the board has test pads for VBUS, VBAT, 3.3 V, I2C and UART0. The pad marked `TX` goes to the ESP32's RXD0 and the pad marked `RX` to TXD0. The ESP32-S3 can also be flashed and debugged over the USB-C port.
-
 ## Power budget
 
 The battery was sized for about 10 hours away from the charger, with the screen on for roughly 30 % of that time. These are design estimates, not measurements.
@@ -292,7 +230,7 @@ There is no firmware in this repository yet. These are the things the hardware e
 - **Display.** The panel uses an SPD2010 controller over QSPI and keeps the frame in its own memory. The plan is to use LVGL for graphics. ESP-IDF's `esp_lcd` has QSPI panel drivers, and SPD2010 display and touch components are available for it.
 - **IMU.** The BMI270 does nothing until an 8 KB configuration file is uploaded at boot. The likely choice is `bmi270_legacy`: it provides tap, orientation and motion detection, which run on the accelerometer alone so the ESP32 can stay asleep until an interrupt arrives.
 - **Time.** The watch gets the time from the phone over Bluetooth and keeps it with the 32.768 kHz crystal while disconnected.
-- **Buttons.** The three buttons are read as voltage levels on one ADC pin; the levels are in the table above.
+- **Buttons.** The three buttons are read as voltage levels on one ADC pin through a resistor ladder.
 - **Flashing.** Over the USB-C port, using the ESP32-S3's built-in USB.
 
 ## Bill of materials
@@ -371,14 +309,6 @@ The exploded view shows the display, front housing, populated PCB, battery and r
 </table>
 
 The display module sets the proportions: it is 44.77 mm across and already 9.6 mm thick, where a traditional pocket watch is 9 to 15 mm in total. The case is built tightly around the display, board and battery to keep the watch as slim as that stack allows.
-
-## Ideas for later
-
-- Battery fuel gauge
-- Barometer
-- RGB LEDs for charging and battery level
-- Over-the-air firmware updates
-- A version without haptics
 
 ## Working with the project
 

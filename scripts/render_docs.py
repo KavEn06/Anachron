@@ -263,13 +263,16 @@ def render_layers(tmp):
 def render_schematics(tmp):
     print("Schematics")
     DOCS.mkdir(parents=True, exist_ok=True)
-    run([KICAD, "sch", "export", "pdf", "-o", DOCS / "Anachron-schematic.pdf", SCH])
+    # Page 1 is the top-level sheet, which only holds the three sheet symbols.
+    run([KICAD, "sch", "export", "pdf", "--pages", "2,3,4", "-o", DOCS / "Anachron-schematic.pdf", SCH])
     print("  Anachron-schematic.pdf")
 
     out = tmp / "sch"
     run([KICAD, "sch", "export", "svg", "--exclude-drawing-sheet", "-o", out, SCH])
     for svg in sorted(out.glob("*.svg")):
-        sheet = svg.stem[len(SCH.stem):].strip("-") or "overview"
+        sheet = svg.stem[len(SCH.stem):].strip("-")
+        if not sheet:
+            continue
         name = "sch-" + re.sub(r"[^a-z0-9]+", "-", sheet.lower()).strip("-")
 
         text = svg.read_text()
