@@ -310,10 +310,10 @@ The display module sets the proportions: it is 44.77 mm across and already 9.6 m
 
 ## Working with the project
 
-Open `Anachron/Anachron.kicad_pro` in KiCad 10. The custom symbols, footprints and 3D models are in `Anachron/Library` and are referenced relative to the project, so nothing else needs installing.
+Open `kicad/Anachron.kicad_pro` in KiCad 10. The custom symbols, footprints and 3D models are in `kicad/Library` and are referenced relative to the project, so nothing else needs installing. The [enclosure STEP files](3d%20models/) include both shell halves, the crown, and both side buttons.
 
 ```
-Anachron/
+kicad/
   Anachron.kicad_pro      project
   Anachron.kicad_sch      top-level sheet
   MCUScreen.kicad_sch     MCU, display connector, crystal, battery sense
@@ -321,21 +321,22 @@ Anachron/
   power.kicad_sch         USB-C, charger, power path, regulator
   Anachron.kicad_pcb      board
   Library/                symbols, footprints and 3D models
+3d models/                individual enclosure STEP files
 docs/
   images/                 renders, layer plots and schematic images
   fusion/                 Fusion 360 renders as exported
   faces/                  pictures used on the mockup watch faces
   sketches/               hand-drawn concept sketch
   Anachron-schematic.pdf  all schematic sheets
-scripts/render_docs.py    regenerates the README images and schematic PDF
+  scripts/render_docs.py  regenerates the README images and schematic PDF
 ```
 
 The PCB renders, layer plots and schematic images are generated from the KiCad files. The enclosure images are made from the Fusion 360 renders in `docs/fusion/`: the script puts them on the same dark background and builds the mockup faces shown at the top of this page, using the pictures in `docs/faces/`. To refresh everything, run the following command.
 
 ```sh
-python3 scripts/render_docs.py
+python3 docs/scripts/render_docs.py
 ```
 
-To refresh only some of the images, name the groups: `3d`, `layers`, `sch` or `fusion`. For example, `python3 scripts/render_docs.py fusion` redoes just the enclosure images after a new export from Fusion 360.
+To refresh only some of the images, name the groups: `3d`, `layers`, `sch` or `fusion`. For example, `python3 docs/scripts/render_docs.py fusion` redoes just the enclosure images after a new export from Fusion 360.
 
 The script needs KiCad's `kicad-cli`, [Pillow](https://pypi.org/project/pillow/), [NumPy](https://numpy.org/), [SciPy](https://scipy.org/) and macOS.

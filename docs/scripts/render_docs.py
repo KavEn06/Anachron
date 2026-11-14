@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Regenerate the README images.
 
-    python3 scripts/render_docs.py            # everything
-    python3 scripts/render_docs.py 3d layers  # only some groups (3d, layers, sch, fusion)
+    python3 docs/scripts/render_docs.py            # everything
+    python3 docs/scripts/render_docs.py 3d layers  # only some groups (3d, layers, sch, fusion)
 
 The 3d, layers and sch groups are generated from the KiCad project, which is
 only ever read. The fusion group takes the Fusion 360 renders saved in
@@ -26,8 +26,8 @@ import numpy as np
 from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
 from scipy import ndimage as ndi
 
-ROOT = Path(__file__).resolve().parent.parent
-PROJECT = ROOT / "Anachron"
+ROOT = Path(__file__).resolve().parents[2]  # docs/scripts/ -> repository root
+PROJECT = ROOT / "kicad"
 PCB = PROJECT / "Anachron.kicad_pcb"
 SCH = PROJECT / "Anachron.kicad_sch"
 DOCS = ROOT / "docs"
