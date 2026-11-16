@@ -121,6 +121,14 @@ The crown encoder sits at the top edge with its push button directly behind it a
 
 The board is 45 mm across to match the display module, which is 44.77 mm in diameter.
 
+### PCB artwork
+
+The board artwork pairs flowing blue-and-white lines on the front with a distorted pocket watch on the back.
+
+<p align="center">
+  <img src="docs/images/pcb-artwork.png" alt="Anachron PCB artwork: blue-and-white flowing lines on the front and a distorted pocket watch on the back" width="1000">
+</p>
+
 ## PCB layers
 
 <table>
